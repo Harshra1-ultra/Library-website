@@ -556,21 +556,18 @@
 
         <div class="grid grid-cols-2 gap-4">
           <div class="space-y-1.5">
-            <label class="text-slate-600 dark:text-slate-400 font-bold">Time Slot *</label>
-            <select id="wa-slot" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl px-3 py-3 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500">
-              <option value="08:00 AM - 12:00 PM">08:00 AM - 12:00 PM</option>
-              <option value="12:00 PM - 04:00 PM">12:00 PM - 04:00 PM</option>
-              <option value="04:00 PM - 08:00 PM">04:00 PM - 08:00 PM</option>
-              <option value="06:00 PM - 10:00 PM">06:00 PM - 10:00 PM</option>
-            </select>
-          </div>
-          <div class="space-y-1.5">
             <label class="text-slate-600 dark:text-slate-400 font-bold">Duration *</label>
-            <select id="wa-duration" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl px-3 py-3 text-slate-800 dark:text-slate-200 focus:outline-none focus:border-indigo-500">
+            <select id="wa-duration" onchange="updateTimeSlots()" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl px-3 py-3 text-slate-800 dark:text-slate-200 focus:outline-none focus:bg-white focus:border-indigo-500">
               <option value="2 Hours">2 Hours</option>
               <option value="4 Hours">4 Hours</option>
               <option value="6 Hours">6 Hours</option>
               <option value="8 Hours">8 Hours (Max)</option>
+            </select>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-slate-600 dark:text-slate-400 font-bold">Time Slot *</label>
+            <select id="wa-slot" class="w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-white/10 rounded-xl px-3 py-3 text-slate-800 dark:text-slate-200 focus:outline-none focus:bg-white focus:border-indigo-500">
+              <!-- Dynamically populated based on duration -->
             </select>
           </div>
         </div>
@@ -803,6 +800,58 @@
     };
 
     // --- WHATSAPP WIZARD POPUP MODAL ---
+    const updateTimeSlots = () => {
+      const durationVal = document.getElementById('wa-duration').value;
+      const slotSelect = document.getElementById('wa-slot');
+      
+      let slots = [];
+      if (durationVal === '2 Hours') {
+        slots = [
+          '08:00 AM - 10:00 AM',
+          '10:00 AM - 12:00 PM',
+          '12:00 PM - 02:00 PM',
+          '02:00 PM - 04:00 PM',
+          '04:00 PM - 06:00 PM',
+          '06:00 PM - 08:00 PM',
+          '08:00 PM - 10:00 PM'
+        ];
+      } else if (durationVal === '4 Hours') {
+        slots = [
+          '08:00 AM - 12:00 PM',
+          '12:00 PM - 04:00 PM',
+          '04:00 PM - 08:00 PM',
+          '06:00 PM - 10:00 PM'
+        ];
+      } else if (durationVal === '6 Hours') {
+        slots = [
+          '08:05 AM - 02:05 PM', // aligned with standard shifts
+          '08:00 AM - 02:00 PM',
+          '12:00 PM - 06:00 PM',
+          '04:00 PM - 10:00 PM'
+        ];
+        // clean up to standard 3 shifts
+        slots = [
+          '08:00 AM - 02:00 PM',
+          '12:00 PM - 06:00 PM',
+          '04:00 PM - 10:00 PM'
+        ];
+      } else if (durationVal === '8 Hours') {
+        slots = [
+          '08:00 AM - 04:00 PM',
+          '12:00 PM - 08:00 PM',
+          '02:00 PM - 10:00 PM'
+        ];
+      }
+      
+      slotSelect.innerHTML = '';
+      slots.forEach(s => {
+        const opt = document.createElement('option');
+        opt.value = s;
+        opt.innerText = s;
+        slotSelect.appendChild(opt);
+      });
+    };
+
     const openWhatsAppModal = (passName) => {
       document.getElementById('whatsapp-booking-modal').classList.remove('hidden');
       document.getElementById('whatsapp-booking-modal').classList.add('flex');
@@ -816,6 +865,10 @@
       const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
       const dd = String(tomorrow.getDate()).padStart(2, '0');
       document.getElementById('wa-date').value = `${yyyy}-${mm}-${dd}`;
+      
+      // Default to 2 hours and generate appropriate slots
+      document.getElementById('wa-duration').value = '2 Hours';
+      updateTimeSlots();
     };
 
     const closeWhatsAppModal = () => {
