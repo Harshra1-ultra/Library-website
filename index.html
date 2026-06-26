@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en" class="h-full">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>The Study Point Library | Premium Reading Hall & Cabin Booking System</title>
-  <!-- SEO Meta Tags -->
-  <meta name="description" content="Distraction-free air-conditioned study hall with private cabins, RO water, fiber Wi-Fi, power backup at Khatangi Kothi, Gaya Highway. View seat availability and book slots.">
+  <title>The Study Point Library | Premium Reading Hall & WhatsApp Booking</title>
+  <meta name="description" content="Distraction-free air-conditioned study hall with private cabins, RO water, fiber Wi-Fi, power backup at Khatangi Kothi, Gaya Highway. View seat availability and book slots via WhatsApp.">
   <meta name="keywords" content="library, study point, cabin booking, Gaya library, study hall, reading room">
   
   <!-- CSS & Tailwind CDN -->
@@ -30,7 +29,6 @@
 
   <!-- Custom CSS for Glassmorphic styling and scrollbar animations -->
   <style>
-    /* Custom CSS custom property variables */
     :root {
       --bg-color: #f8fafc;
       --text-color: #0f172a;
@@ -45,21 +43,13 @@
       transition: background-color 0.3s ease, color 0.3s ease;
     }
     
-    /* Glassmorphism Styles */
     .glass-card {
       background: rgba(17, 24, 39, 0.45);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border: 1px solid rgba(255, 255, 255, 0.08);
     }
-    .light-glass-card {
-      background: rgba(255, 255, 255, 0.65);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(15, 23, 42, 0.06);
-    }
 
-    /* Scrollbars */
     ::-webkit-scrollbar {
       width: 7px;
       height: 7px;
@@ -75,7 +65,6 @@
       background: rgba(99, 102, 241, 0.6);
     }
 
-    /* Keyframe Animations */
     @keyframes fadeInUp {
       from { opacity: 0; transform: translateY(20px); }
       to { opacity: 1; transform: translateY(0); }
@@ -121,29 +110,24 @@
         <nav class="hidden md:flex space-x-6 items-center">
           <a href="javascript:void(0)" onclick="showView('landing')" class="text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors">Home</a>
           <a href="javascript:void(0)" onclick="scrollToSection('landing-gallery')" class="text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors">Gallery</a>
-          <a href="javascript:void(0)" onclick="scrollToSection('landing-plans')" class="text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors">Membership Pricing</a>
+          <a href="javascript:void(0)" onclick="scrollToSection('landing-plans')" class="text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors">Membership Passes</a>
           <a href="javascript:void(0)" onclick="scrollToSection('landing-rules')" class="text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors">Rules</a>
           <a href="javascript:void(0)" onclick="scrollToSection('landing-faqs')" class="text-sm font-medium text-slate-300 hover:text-indigo-400 transition-colors">FAQs</a>
-          <a href="javascript:void(0)" onclick="showView('seats')" class="flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold hover:bg-emerald-500/20 transition-all shrink-0">
-            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
-            <span id="header-available-seats">Seats: 18 Available</span>
-          </a>
         </nav>
 
         <!-- Right Header Items -->
         <div class="flex items-center gap-4">
+          <!-- Live Seats Counter button -->
+          <div class="flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 rounded-full text-xs font-semibold select-none">
+            <span class="w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse"></span>
+            <span id="header-available-seats">Seats: 18 Available</span>
+          </div>
+
           <!-- Dark Mode switch -->
           <button onclick="toggleDarkMode()" class="p-2 hover:bg-white/10 rounded-full text-slate-300 hover:text-white transition-colors" title="Toggle Theme">
             <i data-lucide="sun" id="theme-icon-sun" class="w-5 h-5 hidden"></i>
             <i data-lucide="moon" id="theme-icon-moon" class="w-5 h-5"></i>
           </button>
-
-          <!-- Dynamic Authentication States -->
-          <div id="nav-auth-area" class="flex items-center gap-3">
-            <!-- Guest: Login -->
-            <button onclick="openAuthModal('login')" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Log In</button>
-            <button onclick="openAuthModal('register')" class="text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 px-3.5 py-2 rounded-lg text-white transition-all shadow-md shadow-indigo-600/20">Sign Up</button>
-          </div>
         </div>
       </div>
     </div>
@@ -174,18 +158,13 @@
           </h1>
 
           <p class="text-slate-300 text-sm sm:text-lg max-w-3xl mx-auto leading-relaxed">
-            Boost your learning output. Reserve private study cabins, check out personal lockers, and read with high-speed fiber internet and generator backup.
+            Enhance your study focus. Reserve private cabins directly on WhatsApp and prepare for exams with high-speed fiber internet and generator backup.
           </p>
 
           <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-            <button onclick="handleHeroCTA()" class="flex items-center gap-2 px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-sm transition-all shadow-xl shadow-indigo-600/25 w-full sm:w-auto justify-center text-white">
-              <span>Go to Study Dashboard</span>
+            <button onclick="openWhatsAppModal('General Cabin Reservation')" class="flex items-center gap-2 px-8 py-3.5 bg-indigo-600 hover:bg-indigo-500 rounded-xl font-bold text-sm transition-all shadow-xl shadow-indigo-600/25 w-full sm:w-auto justify-center text-white">
+              <span>Book Cabin via WhatsApp</span>
               <i data-lucide="arrow-right" class="w-4 h-4"></i>
-            </button>
-
-            <button onclick="triggerWhatsAppBooking()" class="flex items-center gap-2 px-8 py-3.5 bg-slate-900/80 hover:bg-slate-800 border border-white/10 rounded-xl font-bold text-sm transition-all backdrop-blur-sm w-full sm:w-auto justify-center text-white">
-              <i data-lucide="message-square" class="w-4 h-4 text-emerald-400"></i>
-              <span>Book via WhatsApp</span>
             </button>
           </div>
         </div>
@@ -198,7 +177,7 @@
             <i data-lucide="bell" class="w-4 h-4 animate-bounce"></i>
             <span>Announcement:</span>
           </div>
-          <p id="announcement-text" class="text-slate-300 flex-1 truncate font-medium">Welcome to the Study Point Library! Get 10% off on yearly membership.</p>
+          <p id="announcement-text" class="text-slate-300 flex-1 truncate font-medium">Welcome to the Study Point Library! Get 10% off on yearly membership passes.</p>
           <div class="text-[10px] bg-slate-800 text-indigo-300 px-2.5 py-1 rounded font-semibold shrink-0">
             Timings: <span id="landing-timings">06:00 AM - 10:00 PM</span>
           </div>
@@ -212,21 +191,11 @@
             <div class="inline-block text-xs font-bold tracking-widest text-indigo-500 uppercase">Introduction</div>
             <h2 class="text-3xl font-extrabold tracking-tight leading-tight">Create the Perfect Environment For Your Study Success</h2>
             <p class="text-slate-400 leading-relaxed text-sm">
-              Distractions are the biggest hurdle in preparing for UPSC, JEE, NEET, banking, and civil services. We offer a quiet study space equipped with personal charging points, high-speed fiber internet, and comfortable ergonomics at Gaya-Fatehpur highway, Khatangi Kothi.
+              Distractions are the biggest hurdle in preparing for competitive exams like UPSC, JEE, NEET, banking, and civil services. We offer a quiet study space equipped with personal charging points, high-speed fiber internet, and comfortable ergonomics at Gaya-Fatehpur highway, Khatangi Kothi.
             </p>
             <p class="text-slate-400 leading-relaxed text-sm">
               Each student gets a personal study seat. Our study hall is fully air-conditioned and monitored continuously via CCTV security systems to maintain a silent environment.
             </p>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div class="flex items-center gap-3">
-                <i data-lucide="check-circle" class="w-5 h-5 text-indigo-500 shrink-0"></i>
-                <span class="font-semibold text-xs">Silent Zone Rules Enforced</span>
-              </div>
-              <div class="flex items-center gap-3">
-                <i data-lucide="check-circle" class="w-5 h-5 text-indigo-500 shrink-0"></i>
-                <span class="font-semibold text-xs">Ergonomic Chairs with Back Support</span>
-              </div>
-            </div>
           </div>
 
           <div class="lg:col-span-5 relative group">
@@ -277,55 +246,11 @@
         <div class="text-center space-y-4">
           <div class="text-xs font-bold tracking-widest text-indigo-500 uppercase">Pricing Options</div>
           <h2 class="text-3xl font-extrabold tracking-tight">Flexible Membership Passes</h2>
-          <p class="text-slate-400 max-w-xl mx-auto text-xs">Choose from our daily access pass to yearly permanent memberships.</p>
+          <p class="text-slate-400 max-w-xl mx-auto text-xs">Pick a plan pass below to book via WhatsApp.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="glass-card rounded-2xl border border-white/5 flex flex-col justify-between overflow-hidden relative group">
-            <div class="p-8 space-y-6">
-              <h3 class="font-extrabold text-xl text-white">Daily Pass</h3>
-              <p class="text-[10px] text-indigo-400 font-bold tracking-widest uppercase">Duration: 1 Day</p>
-              <div class="text-3xl font-extrabold text-white">₹50</div>
-              <hr class="border-white/5">
-              <ul class="space-y-3 text-xs text-slate-300">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Study hall access</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>High speed Wi-Fi</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Drinking RO water</span></li>
-              </ul>
-            </div>
-            <div class="p-8 pt-0"><button onclick="buyMembershipPassSim('Daily Pass', 50, 1)" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition-colors">Book Now</button></div>
-          </div>
-
-          <div class="glass-card rounded-2xl border border-white/5 flex flex-col justify-between overflow-hidden relative group">
-            <div class="p-8 space-y-6">
-              <h3 class="font-extrabold text-xl text-white">Monthly Pass</h3>
-              <p class="text-[10px] text-indigo-400 font-bold tracking-widest uppercase">Duration: 30 Days</p>
-              <div class="text-3xl font-extrabold text-white">₹800</div>
-              <hr class="border-white/5">
-              <ul class="space-y-3 text-xs text-slate-300">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Allocated Cabin preference</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>High speed Wi-Fi</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Locker facility</span></li>
-              </ul>
-            </div>
-            <div class="p-8 pt-0"><button onclick="buyMembershipPassSim('Monthly Pass', 800, 30)" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition-colors">Book Now</button></div>
-          </div>
-
-          <div class="glass-card rounded-2xl border border-white/5 flex flex-col justify-between overflow-hidden relative group">
-            <span class="absolute top-3 right-3 bg-indigo-600 text-[10px] text-white font-extrabold tracking-wider uppercase px-2.5 py-1 rounded-full">Best Value</span>
-            <div class="p-8 space-y-6">
-              <h3 class="font-extrabold text-xl text-white">Yearly Pass</h3>
-              <p class="text-[10px] text-indigo-400 font-bold tracking-widest uppercase">Duration: 365 Days</p>
-              <div class="text-3xl font-extrabold text-white">₹7,500</div>
-              <hr class="border-white/5">
-              <ul class="space-y-3 text-xs text-slate-300">
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Permanent Study Cabin</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>Locker facility & AC</span></li>
-                <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>All competitive Magazines</span></li>
-              </ul>
-            </div>
-            <div class="p-8 pt-0"><button onclick="buyMembershipPassSim('Yearly Pass', 7500, 365)" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition-colors">Book Now</button></div>
-          </div>
+        <div id="plans-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Seeded dynamic membership cards -->
         </div>
       </section>
 
@@ -367,16 +292,16 @@
               <i data-lucide="chevron-down" id="faq-chevron-0" class="w-4 h-4 text-indigo-400"></i>
             </button>
             <div id="faq-answer-0" class="hidden px-6 pb-5 pt-1 text-xs leading-relaxed text-slate-400 border-t border-white/5">
-              You can register online, pick a membership plan, complete payment, and start visiting. Alternatively, you can drop by and book via WhatsApp or at the reception desk.
+              Select any pass plan, fill out the WhatsApp booking form, and verify cabin seat availability instantly with our administrator.
             </div>
           </div>
           <div class="bg-slate-900/60 border border-white/5 rounded-2xl overflow-hidden">
             <button onclick="toggleFaqAccordion(1)" class="w-full px-6 py-4 flex items-center justify-between font-bold text-xs sm:text-sm text-left hover:bg-white/5 text-white">
-              <span>How does the cabin booking system work?</span>
+              <span>Is Wi-Fi available?</span>
               <i data-lucide="chevron-down" id="faq-chevron-1" class="w-4 h-4 text-indigo-400"></i>
             </button>
             <div id="faq-answer-1" class="hidden px-6 pb-5 pt-1 text-xs leading-relaxed text-slate-400 border-t border-white/5">
-              Once logged in, click "Reserve Study Cabin" in your dashboard, select your date, select an open time slot, choose from the available cabins, and confirm instantly.
+              Yes, high-speed fiber Wi-Fi internet connectivity is completely free and included with all passes.
             </div>
           </div>
         </div>
@@ -417,7 +342,7 @@
                 <i data-lucide="message-square" class="w-5 h-5 text-emerald-400 shrink-0"></i>
                 <div>
                   <h4 class="font-bold text-slate-400">WhatsApp Inquiry</h4>
-                  <button onclick="triggerWhatsAppBooking()" class="text-sm font-semibold text-emerald-400 hover:underline">Chat with Admin</button>
+                  <button onclick="openWhatsAppModal('General Info')" class="text-sm font-semibold text-emerald-400 hover:underline">Chat with Admin</button>
                 </div>
               </div>
               <div class="flex items-start gap-4 p-4 bg-slate-900/60 border border-white/5 rounded-2xl">
@@ -462,610 +387,71 @@
       </section>
     </div>
 
-    <!-- VIEW B: SEATS LAYOUT VIEW -->
-    <div id="view-seats" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-8 animate-fade-in-up">
-      <div class="flex justify-between items-center">
-        <button onclick="showView('landing')" class="inline-flex items-center gap-2 text-xs font-semibold text-slate-405 hover:text-white transition-colors">
-          <i data-lucide="arrow-left" class="w-4 h-4"></i><span>Back to Home</span>
-        </button>
-      </div>
-
-      <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-6 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-48 h-48 bg-emerald-500/10 rounded-full blur-[80px] pointer-events-none"></div>
-        <div class="space-y-2">
-          <span class="text-xs font-bold tracking-widest text-emerald-400 uppercase">Live Seat Status</span>
-          <h1 class="text-3xl font-extrabold tracking-tight text-white">Reading Hall Seating Chart</h1>
-          <p class="text-slate-400 text-xs">Real-time seat occupancy count inside our reading halls.</p>
-        </div>
-
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-4 text-center">
-          <div class="p-6 bg-white/5 border border-white/5 rounded-2xl">
-            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Total Hall Seats</span>
-            <span class="text-4xl font-black text-white" id="seat-total-val">80</span>
-          </div>
-          <div class="p-6 bg-emerald-500/10 border border-emerald-500/20 rounded-2xl">
-            <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider block mb-1">Available Seats</span>
-            <span class="text-4xl font-black text-emerald-400" id="seat-avail-val">18</span>
-          </div>
-          <div class="p-6 bg-rose-500/10 border border-rose-500/20 rounded-2xl">
-            <span class="text-[10px] text-rose-400 font-bold uppercase tracking-wider block mb-1">Occupied Seats</span>
-            <span class="text-4xl font-black text-rose-400" id="seat-occup-val">62</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="space-y-4">
-        <h3 class="font-bold text-sm text-white">Visual Seating arrangement</h3>
-        <div class="glass-card p-8 rounded-3xl border border-white/5">
-          <div id="seats-grid-visualizer" class="grid grid-cols-4 sm:grid-cols-8 md:grid-cols-10 gap-3">
-            <!-- 80 seats grid -->
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- VIEW C: STUDENT DASHBOARD -->
-    <div id="view-dashboard" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 animate-fade-in-up">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
-        
-        <!-- Sidebar Nav -->
-        <aside class="lg:col-span-3 space-y-4">
-          <div class="glass-card p-6 rounded-3xl border border-white/5 space-y-4">
-            <div class="flex items-center gap-3">
-              <div class="p-2.5 bg-indigo-600/20 text-indigo-400 rounded-xl">
-                <i data-lucide="user" class="w-5 h-5"></i>
-              </div>
-              <div class="truncate">
-                <h3 id="dash-username" class="font-extrabold text-sm text-white truncate">Student</h3>
-                <span class="text-[10px] text-slate-500 font-bold uppercase tracking-widest block">Student Portal</span>
-              </div>
-            </div>
-
-            <hr class="border-white/5">
-
-            <nav class="flex flex-col gap-1 text-xs">
-              <button onclick="switchDashboardTab('overview')" id="tabbtn-overview" class="tab-btn flex items-center gap-2.5 px-4 py-3 rounded-xl font-bold bg-indigo-600 text-white text-left">
-                <i data-lucide="clipboard-list" class="w-4 h-4"></i><span>Overview & Passes</span>
-              </button>
-              <button onclick="switchDashboardTab('booking')" id="tabbtn-booking" class="tab-btn flex items-center gap-2.5 px-4 py-3 rounded-xl font-bold text-slate-400 hover:text-white hover:bg-white/5 text-left">
-                <i data-lucide="calendar" class="w-4 h-4"></i><span>Book Study Cabin</span>
-              </button>
-              <button onclick="switchDashboardTab('billing')" id="tabbtn-billing" class="tab-btn flex items-center gap-2.5 px-4 py-3 rounded-xl font-bold text-slate-400 hover:text-white hover:bg-white/5 text-left">
-                <i data-lucide="credit-card" class="w-4 h-4"></i><span>Passes & Invoices</span>
-              </button>
-              <button onclick="switchDashboardTab('profile')" id="tabbtn-profile" class="tab-btn flex items-center gap-2.5 px-4 py-3 rounded-xl font-bold text-slate-400 hover:text-white hover:bg-white/5 text-left">
-                <i data-lucide="key" class="w-4 h-4"></i><span>Account Settings</span>
-              </button>
-              <button onclick="switchDashboardTab('reviews')" id="tabbtn-reviews" class="tab-btn flex items-center gap-2.5 px-4 py-3 rounded-xl font-bold text-slate-400 hover:text-white hover:bg-white/5 text-left">
-                <i data-lucide="star" class="w-4 h-4"></i><span>Rate & Review Us</span>
-              </button>
-            </nav>
-
-            <hr class="border-white/5">
-            <button onclick="handleLogout()" class="w-full flex items-center gap-2 px-4 py-2 text-xs font-bold text-rose-400 hover:text-rose-300 hover:bg-rose-500/10 rounded-xl transition-all">
-              <i data-lucide="log-out" class="w-4 h-4"></i><span>Log Out Session</span>
-            </button>
-          </div>
-        </aside>
-
-        <!-- Tab contents -->
-        <main class="lg:col-span-9 space-y-6">
-          
-          <!-- SUBTAB 1: OVERVIEW -->
-          <div id="dash-tab-overview" class="dash-tab-panel space-y-6">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-              
-              <!-- Membership status -->
-              <div class="glass-card p-6 rounded-3xl border border-white/5 space-y-3 relative overflow-hidden">
-                <div class="absolute top-0 right-0 w-20 h-20 bg-indigo-500/15 rounded-full blur-xl"></div>
-                <span class="text-[9px] font-bold tracking-widest text-indigo-400 uppercase">Membership Status</span>
-                
-                <div id="dash-pass-status-active" class="space-y-2 hidden">
-                  <div class="flex items-center gap-1 text-emerald-400 font-extrabold text-xs">
-                    <i data-lucide="check-circle" class="w-4 h-4"></i><span>Active Pass</span>
-                  </div>
-                  <h4 id="dash-pass-name" class="font-extrabold text-base text-white">Monthly Pass</h4>
-                  <p id="dash-pass-expiry" class="text-[10px] text-slate-400">Expires: 2026-07-26</p>
-                  <div class="text-xl font-black text-white" id="dash-pass-days-left">30 days left</div>
-                </div>
-
-                <div id="dash-pass-status-inactive" class="space-y-3">
-                  <div class="flex items-center gap-1 text-rose-400 font-extrabold text-xs">
-                    <i data-lucide="alert-circle" class="w-4 h-4"></i><span>No Active Pass</span>
-                  </div>
-                  <p class="text-[10px] text-slate-400">Purchase a membership plan pass to book study cabins.</p>
-                  <button onclick="switchDashboardTab('billing')" class="px-3.5 py-1.5 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-[10px] font-bold text-white transition-all">Buy Pass</button>
-                </div>
-              </div>
-
-              <!-- Cabin Number allocated -->
-              <div class="glass-card p-6 rounded-3xl border border-white/5 space-y-3">
-                <span class="text-[9px] font-bold tracking-widest text-indigo-400 uppercase">Cabin Allocation</span>
-                <div class="space-y-1">
-                  <div class="text-xs text-slate-400 font-semibold">Your Active Cabin Desk:</div>
-                  <div id="dash-allocated-cabin-value" class="text-2xl font-black text-indigo-400">None Reserved</div>
-                  <p class="text-[9px] text-slate-400 leading-relaxed">Reserve your private study cabin slot in the next tab.</p>
-                </div>
-              </div>
-
-              <!-- Notifications box -->
-              <div class="glass-card p-6 rounded-3xl border border-white/5 space-y-3">
-                <span class="text-[9px] font-bold tracking-widest text-indigo-400 uppercase">Notifications Box</span>
-                <div id="dash-notifications-list" class="space-y-2 max-h-24 overflow-y-auto text-[10px]">
-                  <!-- List notifications -->
-                </div>
-              </div>
-            </div>
-
-            <!-- Booking logs -->
-            <div class="glass-card p-6 rounded-3xl border border-white/5 space-y-4">
-              <h3 class="font-extrabold text-sm text-white">Your Cabin Booking History</h3>
-              <div class="overflow-x-auto">
-                <table class="w-full text-xs text-left">
-                  <thead>
-                    <tr class="border-b border-white/10 text-slate-400 font-semibold">
-                      <th class="pb-3">Cabin</th>
-                      <th class="pb-3">Date</th>
-                      <th class="pb-3">Time Slot</th>
-                      <th class="pb-3">Duration</th>
-                      <th class="pb-3">Status</th>
-                      <th class="pb-3 text-right">Action</th>
-                    </tr>
-                  </thead>
-                  <tbody id="dash-bookings-table-body" class="divide-y divide-white/5">
-                    <!-- History rows -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- SUBTAB 2: BOOK STUDY CABIN -->
-          <div id="dash-tab-booking" class="dash-tab-panel space-y-6 hidden">
-            <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-6">
-              <div class="space-y-1">
-                <h3 class="font-extrabold text-lg text-white">Reserve An Individual Study Cabin</h3>
-                <p class="text-slate-400 text-xs">Block your personal study desk. Overlaps are blocked dynamically.</p>
-              </div>
-
-              <div id="booking-wizard-form" class="space-y-6 text-xs">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400 font-semibold">1. Choose Date</label>
-                    <input type="date" id="book-date" onchange="runWizardAvailabilityCheck()" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500">
-                  </div>
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400 font-semibold">2. Choose Time Slot</label>
-                    <select id="book-slot" onchange="runWizardAvailabilityCheck()" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500">
-                      <option value="06:00-10:00">Early Morning (06:00 AM - 10:00 AM)</option>
-                      <option value="08:00-12:00">Morning Shift (08:00 AM - 12:00 PM)</option>
-                      <option value="12:00-16:00">Noon Shift (12:00 PM - 04:00 PM)</option>
-                      <option value="14:00-18:00">Afternoon Shift (02:00 PM - 06:00 PM)</option>
-                      <option value="16:00-20:00">Evening Shift (04:00 PM - 08:00 PM)</option>
-                      <option value="18:00-22:00">Night Shift (06:00 PM - 10:00 PM)</option>
-                    </select>
-                  </div>
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400 font-semibold">3. Select Duration</label>
-                    <select id="book-duration" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-slate-200 focus:outline-none focus:border-indigo-500">
-                      <option value="2">2 Hours</option>
-                      <option value="4">4 Hours</option>
-                      <option value="6">6 Hours</option>
-                      <option value="8">8 Hours (Max)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div class="space-y-3">
-                  <div class="flex justify-between items-center">
-                    <label class="text-slate-400 font-semibold">4. Choose Available Cabin</label>
-                    <div class="flex gap-4 text-[10px]">
-                      <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-emerald-500"></span>Available</span>
-                      <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded bg-rose-500"></span>Occupied</span>
-                    </div>
-                  </div>
-
-                  <div id="booking-cabins-grid" class="grid grid-cols-2 sm:grid-cols-5 gap-4">
-                    <!-- Dynamic check button nodes -->
-                  </div>
-                </div>
-
-                <div id="wizard-confirm-area" class="hidden p-4 bg-indigo-600/10 border border-indigo-600/20 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
-                  <div>
-                    <h4 class="font-bold text-indigo-400">Confirm Cabin Reservation:</h4>
-                    <p id="wizard-summary-text" class="text-slate-300 text-[10px]"></p>
-                  </div>
-                  <button onclick="confirmWizardBooking()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-md shrink-0">Confirm Booking</button>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- SUBTAB 3: PASSES & BILLING -->
-          <div id="dash-tab-billing" class="dash-tab-panel space-y-6 hidden">
-            <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-6">
-              <div class="space-y-1">
-                <h3 class="font-extrabold text-lg text-white">Buy/Renew Membership Passes</h3>
-                <p class="text-slate-400 text-xs">Pick a plan and scan the simulated UPI QR Code to verify billing logs.</p>
-              </div>
-
-              <div id="payment-gate-selection-area" class="space-y-4">
-                <form onsubmit="handleInitiatePassPayment(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-6 text-xs">
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400 font-semibold">Select Pass Plan</label>
-                    <select id="billing-plan-select" required class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-slate-200 focus:outline-none">
-                      <option value="">-- Choose Plan Pass --</option>
-                      <option value="Daily Pass|50|1">Daily Pass - ₹50 (1 Day)</option>
-                      <option value="Weekly Pass|250|7">Weekly Pass - ₹250 (7 Days)</option>
-                      <option value="Monthly Pass|800|30">Monthly Pass - ₹800 (30 Days)</option>
-                      <option value="Quarterly Pass|2200|90">Quarterly Pass - ₹2200 (90 Days)</option>
-                      <option value="Half-Yearly Pass|4000|180">Half-Yearly Pass - ₹4000 (180 Days)</option>
-                      <option value="Yearly Pass|7500|365">Yearly Pass - ₹7500 (365 Days)</option>
-                    </select>
-                  </div>
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400 font-semibold">Payment Gateway Option</label>
-                    <select id="billing-method-select" class="w-full bg-slate-900 border border-white/10 rounded-xl px-4 py-3 text-slate-200 focus:outline-none">
-                      <option value="QR_Code">UPI QR Code scanner (Simulated)</option>
-                      <option value="UPI">UPI ID Direct (Simulated)</option>
-                      <option value="Razorpay">Razorpay Gateway (Simulated)</option>
-                    </select>
-                  </div>
-                  <button type="submit" class="sm:col-span-2 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition-colors">Checkout Pass</button>
-                </form>
-              </div>
-
-              <!-- Payment processing simulation block -->
-              <div id="payment-simulation-box" class="hidden p-6 bg-slate-950 border border-white/10 rounded-2xl flex flex-col items-center gap-4 text-center text-xs">
-                <div class="flex justify-between w-full pb-2 border-b border-white/5">
-                  <span class="font-bold text-indigo-400">Payment Invoice Verification</span>
-                  <button onclick="cancelPaymentSim()" class="text-slate-500 hover:text-white">✕</button>
-                </div>
-                <div class="space-y-1">
-                  <p class="text-slate-400">Total Amount Due:</p>
-                  <h3 id="sim-pay-amount" class="text-2xl font-black text-white">₹800</h3>
-                  <span id="sim-pay-invoice" class="text-[9px] text-slate-500 font-mono">INV-2026...</span>
-                </div>
-                <!-- Dynamic QR code server API target -->
-                <div id="sim-qr-container" class="p-3 bg-white rounded-lg flex flex-col items-center gap-2">
-                  <img id="sim-qr-image" src="" alt="UPI Scan code" class="w-40 h-40">
-                  <span class="text-[9px] text-slate-500 font-semibold tracking-wider">SCAN SCAN TO PAY</span>
-                </div>
-                <div class="w-full space-y-2">
-                  <button onclick="approvePaymentSim()" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all shadow">Simulate Payment Approval</button>
-                  <button onclick="cancelPaymentSim()" class="w-full py-2 bg-slate-800 hover:bg-slate-750 text-slate-400 rounded-xl transition-all">Cancel</button>
-                </div>
-              </div>
-            </div>
-
-            <!-- Bills history table -->
-            <div class="glass-card p-6 rounded-3xl border border-white/5 space-y-4">
-              <h3 class="font-extrabold text-sm text-white">Billing & Payment History</h3>
-              <div class="overflow-x-auto">
-                <table class="w-full text-xs text-left">
-                  <thead>
-                    <tr class="border-b border-white/10 text-slate-400 font-semibold">
-                      <th class="pb-3">Invoice No.</th>
-                      <th class="pb-3">Pass Plan</th>
-                      <th class="pb-3">Amount</th>
-                      <th class="pb-3">Method</th>
-                      <th class="pb-3">Date</th>
-                      <th class="pb-3 text-right">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody id="dash-payments-table-body" class="divide-y divide-white/5">
-                    <!-- Payments ledger rows -->
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- SUBTAB 4: ACCOUNT PROFILE -->
-          <div id="dash-tab-profile" class="dash-tab-panel space-y-6 hidden">
-            <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-6">
-              <div class="space-y-1">
-                <h3 class="font-extrabold text-lg text-white">Update Profile Settings</h3>
-                <p class="text-slate-400 text-xs">Update your email, display name, contact phone number, or password credentials.</p>
-              </div>
-
-              <form onsubmit="handleProfileFormSubmit(event)" class="space-y-6 text-xs">
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400 font-semibold">Your Display Name</label>
-                    <input type="text" id="profile-name" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-                  </div>
-                  <div class="space-y-1.5">
-                    <label class="text-slate-400 font-semibold">Contact Phone Number</label>
-                    <input type="text" id="profile-phone" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-                  </div>
-                </div>
-                <div class="space-y-1.5 max-w-sm">
-                  <label class="text-slate-400 font-semibold">Change Password (Leave blank to keep current)</label>
-                  <input type="password" id="profile-password" placeholder="New Password" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-                </div>
-                <button type="submit" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-md">Save Profile Settings</button>
-              </form>
-            </div>
-          </div>
-
-          <!-- SUBTAB 5: FEEDBACK RATING -->
-          <div id="dash-tab-reviews" class="dash-tab-panel space-y-6 hidden">
-            <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-6">
-              <div class="space-y-1">
-                <h3 class="font-extrabold text-lg text-white">Rate & Review Your Experience</h3>
-                <p class="text-slate-400 text-xs">Help other aspirants know about your experience. Your feedback keeps us improving.</p>
-              </div>
-
-              <form onsubmit="handleReviewFormSubmit(event)" class="space-y-6 text-xs">
-                <div class="space-y-2">
-                  <label class="text-slate-400 font-semibold block">Select Star rating count</label>
-                  <div class="flex gap-2">
-                    <button type="button" onclick="setReviewFormRating(1)" class="review-star-btn hover:scale-115 transition"><i data-lucide="star" id="review-star-1" class="w-8 h-8 text-yellow-500 fill-yellow-500"></i></button>
-                    <button type="button" onclick="setReviewFormRating(2)" class="review-star-btn hover:scale-115 transition"><i data-lucide="star" id="review-star-2" class="w-8 h-8 text-yellow-500 fill-yellow-500"></i></button>
-                    <button type="button" onclick="setReviewFormRating(3)" class="review-star-btn hover:scale-115 transition"><i data-lucide="star" id="review-star-3" class="w-8 h-8 text-yellow-500 fill-yellow-500"></i></button>
-                    <button type="button" onclick="setReviewFormRating(4)" class="review-star-btn hover:scale-115 transition"><i data-lucide="star" id="review-star-4" class="w-8 h-8 text-yellow-500 fill-yellow-500"></i></button>
-                    <button type="button" onclick="setReviewFormRating(5)" class="review-star-btn hover:scale-115 transition"><i data-lucide="star" id="review-star-5" class="w-8 h-8 text-yellow-500 fill-yellow-500"></i></button>
-                  </div>
-                </div>
-                <div class="space-y-1.5">
-                  <label class="text-slate-400 font-semibold">Write detailed comments *</label>
-                  <textarea id="review-comment" rows="5" required placeholder="Write details of study environment, Wi-Fi speed, and library timings..." class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white resize-none focus:outline-none"></textarea>
-                </div>
-                <button type="submit" class="px-8 py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow-md">Submit review</button>
-              </form>
-            </div>
-          </div>
-
-        </main>
-      </div>
-    </div>
-
     <!-- VIEW D: ADMIN PANEL -->
-    <div id="view-admin" class="view-panel hidden max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8 animate-fade-in-up">
-      
-      <!-- Admin header banner -->
-      <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-        <div>
-          <h1 class="text-3xl font-extrabold text-white tracking-tight flex items-center gap-2">
-            <i data-lucide="shield" class="w-8 h-8 text-indigo-500"></i>
-            <span>Admin Control Panel</span>
-          </h1>
-          <p class="text-slate-400 text-xs">Manage students, cabins blocker states, reservations approvals, and settings configs.</p>
-        </div>
-        <button onclick="refreshAdminDataState()" class="flex items-center gap-1.5 px-3 py-1.5 bg-slate-900 border border-white/10 hover:bg-slate-800 text-xs text-slate-300 hover:text-white rounded-lg transition-colors shrink-0">
-          <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i><span>Sync Data Logs</span>
-        </button>
+    <div id="view-admin" class="view-panel hidden max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-8 animate-fade-in-up">
+      <div class="flex justify-between items-center">
+        <h1 class="text-2xl font-extrabold text-white tracking-tight flex items-center gap-2">
+          <i data-lucide="shield" class="w-6 h-6 text-indigo-500"></i>
+          <span>Admin Settings Dashboard</span>
+        </h1>
+        <button onclick="showView('landing')" class="text-xs font-semibold text-slate-400 hover:text-white">Exit Admin Settings</button>
       </div>
 
-      <!-- Stats Grid -->
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 text-center">
-        <div class="glass-card p-4 rounded-2xl border border-white/5 flex flex-col items-center justify-center">
-          <div class="p-1.5 bg-white/5 rounded-lg mb-2 text-indigo-400"><i data-lucide="users" class="w-4 h-4"></i></div>
-          <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Total Students</span>
-          <span class="text-xl font-black text-white" id="stat-total-students">3</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl border border-white/5 flex flex-col items-center justify-center">
-          <div class="p-1.5 bg-white/5 rounded-lg mb-2 text-emerald-400"><i data-lucide="credit-card" class="w-4 h-4"></i></div>
-          <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Active Passes</span>
-          <span class="text-xl font-black text-white" id="stat-active-memberships">2</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl border border-white/5 flex flex-col items-center justify-center">
-          <div class="p-1.5 bg-white/5 rounded-lg mb-2 text-emerald-400"><i data-lucide="sliders" class="w-4 h-4"></i></div>
-          <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Available Seats</span>
-          <span class="text-xl font-black text-white" id="stat-avail-seats">18</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl border border-white/5 flex flex-col items-center justify-center">
-          <div class="p-1.5 bg-white/5 rounded-lg mb-2 text-amber-400"><i data-lucide="calendar" class="w-4 h-4"></i></div>
-          <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Bookings Today</span>
-          <span class="text-xl font-black text-white" id="stat-bookings-today">0</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl border border-white/5 flex flex-col items-center justify-center">
-          <div class="p-1.5 bg-white/5 rounded-lg mb-2 text-indigo-400"><i data-lucide="credit-card" class="w-4 h-4"></i></div>
-          <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Total Revenue</span>
-          <span class="text-xl font-black text-white" id="stat-revenue">₹1,600</span>
-        </div>
-        <div class="glass-card p-4 rounded-2xl border border-white/5 flex flex-col items-center justify-center">
-          <div class="p-1.5 bg-white/5 rounded-lg mb-2 text-indigo-400"><i data-lucide="users" class="w-4 h-4"></i></div>
-          <span class="text-[9px] text-slate-400 font-bold uppercase tracking-wider block mb-1">Registrations (7d)</span>
-          <span class="text-xl font-black text-white" id="stat-registrations">3</span>
-        </div>
+      <!-- Settings Configurations -->
+      <div class="glass-card p-8 rounded-3xl border border-white/5 space-y-6 text-xs">
+        <form onsubmit="handleAdminSettingsSave(event)" class="space-y-6">
+          <h3 class="font-extrabold text-sm text-white border-b border-white/5 pb-2">Edit Library Configurations</h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="space-y-1.5">
+              <label class="text-slate-400 font-semibold">Library Name</label>
+              <input type="text" id="adminset-name" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-slate-400 font-semibold">Tagline</label>
+              <input type="text" id="adminset-tagline" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-slate-400 font-semibold">Operating Timings</label>
+              <input type="text" id="adminset-timings" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="space-y-1.5">
+              <label class="text-slate-400 font-semibold">Contact Phone</label>
+              <input type="text" id="adminset-phone" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-slate-400 font-semibold">WhatsApp Number</label>
+              <input type="text" id="adminset-whatsapp" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+            </div>
+            <div class="space-y-1.5">
+              <label class="text-slate-400 font-semibold">Contact Email</label>
+              <input type="email" id="adminset-email" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            <div class="space-y-1.5 sm:col-span-2">
+              <label class="text-slate-400 font-semibold">Address Location</label>
+              <input type="text" id="adminset-address" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+              <div class="space-y-1.5">
+                <label class="text-slate-400 font-semibold">Total Seats</label>
+                <input type="number" id="adminset-total-seats" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+              </div>
+              <div class="space-y-1.5">
+                <label class="text-slate-400 font-semibold">Occupied Seats</label>
+                <input type="number" id="adminset-occupied-seats" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
+              </div>
+            </div>
+          </div>
+
+          <button type="submit" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow">Save Configurations</button>
+        </form>
       </div>
-
-      <!-- Admin Tabs selector -->
-      <div class="border-b border-white/10 flex flex-wrap gap-2 text-xs">
-        <button onclick="switchAdminTab('bookings')" id="admin-tabbtn-bookings" class="admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-indigo-500 text-white">Reservations Approvals</button>
-        <button onclick="switchAdminTab('students')" id="admin-tabbtn-students" class="admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-transparent text-slate-400 hover:text-white">Students Index</button>
-        <button onclick="switchAdminTab('cabins')" id="admin-tabbtn-cabins" class="admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-transparent text-slate-400 hover:text-white">Cabins & Seats</button>
-        <button onclick="switchAdminTab('billing')" id="admin-tabbtn-billing" class="admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-transparent text-slate-400 hover:text-white">Billings Log</button>
-        <button onclick="switchAdminTab('reviews')" id="admin-tabbtn-reviews" class="admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-transparent text-slate-400 hover:text-white">Reviews Moderation</button>
-        <button onclick="switchAdminTab('contact')" id="admin-tabbtn-contact" class="admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-transparent text-slate-400 hover:text-white">Inquiry Tickets</button>
-        <button onclick="switchAdminTab('settings')" id="admin-tabbtn-settings" class="admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-transparent text-slate-400 hover:text-white">Settings Config</button>
-      </div>
-
-      <!-- Tab content containers -->
-      <div class="bg-slate-900/40 rounded-3xl border border-white/5 p-6 min-h-[350px]">
-        
-        <!-- 1. RESERVATIONS APPROVALS -->
-        <div id="admin-tab-bookings" class="admin-tab-panel space-y-4">
-          <h3 class="font-extrabold text-sm text-white">Reservations Approvals Queue</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full text-xs text-left">
-              <thead>
-                <tr class="border-b border-white/10 text-slate-400 font-semibold">
-                  <th class="pb-3">Student Aspirant</th>
-                  <th class="pb-3">Cabin</th>
-                  <th class="pb-3">Date</th>
-                  <th class="pb-3">Time Slot</th>
-                  <th class="pb-3">Duration</th>
-                  <th class="pb-3">Status</th>
-                  <th class="pb-3 text-right">Actions</th>
-                </tr>
-              </thead>
-              <tbody id="admin-bookings-table-body" class="divide-y divide-white/5">
-                <!-- History -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- 2. STUDENTS INDEX -->
-        <div id="admin-tab-students" class="admin-tab-panel space-y-4 hidden">
-          <h3 class="font-extrabold text-sm text-white">Registered Students List</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full text-xs text-left">
-              <thead>
-                <tr class="border-b border-white/10 text-slate-400 font-semibold">
-                  <th class="pb-3">Name</th>
-                  <th class="pb-3">Email Address</th>
-                  <th class="pb-3">Phone</th>
-                  <th class="pb-3">Security Check</th>
-                  <th class="pb-3">Active Pass</th>
-                </tr>
-              </thead>
-              <tbody id="admin-students-table-body" class="divide-y divide-white/5">
-                <!-- Students lists -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- 3. CABINS & SEATS BLOCKS -->
-        <div id="admin-tab-cabins" class="admin-tab-panel space-y-6 hidden">
-          <div class="flex justify-between items-center">
-            <h3 class="font-extrabold text-sm text-white">Study Cabins Capacity Layout</h3>
-            <button onclick="handleAdminCreateCabin()" class="flex items-center gap-1 px-3 py-1.5 bg-indigo-600 hover:bg-indigo-500 text-white rounded-lg text-xs font-bold transition-all">
-              <i data-lucide="plus-circle" class="w-4 h-4"></i><span>Create Cabin</span>
-            </button>
-          </div>
-          <div id="admin-cabins-grid-list" class="grid grid-cols-2 sm:grid-cols-5 gap-4 text-xs">
-            <!-- Grid cards -->
-          </div>
-        </div>
-
-        <!-- 4. BILLINGS LEDGER -->
-        <div id="admin-tab-billing" class="admin-tab-panel space-y-4 hidden">
-          <h3 class="font-extrabold text-sm text-white">Invoices & Payments Ledger</h3>
-          <div class="overflow-x-auto">
-            <table class="w-full text-xs text-left">
-              <thead>
-                <tr class="border-b border-white/10 text-slate-400 font-semibold">
-                  <th class="pb-3">Invoice No.</th>
-                  <th class="pb-3">Student Aspirant</th>
-                  <th class="pb-3">Plan Pass</th>
-                  <th class="pb-3">Amount</th>
-                  <th class="pb-3">Gateway</th>
-                  <th class="pb-3">Date</th>
-                  <th class="pb-3 text-right">Status</th>
-                </tr>
-              </thead>
-              <tbody id="admin-payments-table-body" class="divide-y divide-white/5">
-                <!-- Payments logs -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-
-        <!-- 5. REVIEWS MODERATOR -->
-        <div id="admin-tab-reviews" class="admin-tab-panel space-y-4 hidden">
-          <h3 class="font-extrabold text-sm text-white">Moderation of Student Reviews</h3>
-          <div id="admin-reviews-list-moderation" class="grid grid-cols-1 gap-4 text-xs">
-            <!-- Moderation nodes -->
-          </div>
-        </div>
-
-        <!-- 6. INQUIRY TICKETS -->
-        <div id="admin-tab-contact" class="admin-tab-panel space-y-4 hidden">
-          <h3 class="font-extrabold text-sm text-white">Inquiry Tickets Box</h3>
-          <div id="admin-inquiries-list" class="grid grid-cols-1 gap-4 text-xs">
-            <!-- Inquiry message nodes -->
-          </div>
-        </div>
-
-        <!-- 7. METADATA SETTINGS -->
-        <div id="admin-tab-settings" class="admin-tab-panel space-y-8 hidden text-xs">
-          <form onsubmit="handleAdminSettingsSave(event)" class="space-y-6">
-            <h3 class="font-extrabold text-sm text-white border-b border-white/5 pb-2">Edit Library Configurations</h3>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div class="space-y-1.5">
-                <label class="text-slate-400 font-semibold">Library Name</label>
-                <input type="text" id="adminset-name" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500">
-              </div>
-              <div class="space-y-1.5">
-                <label class="text-slate-400 font-semibold">Tagline</label>
-                <input type="text" id="adminset-tagline" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500">
-              </div>
-              <div class="space-y-1.5">
-                <label class="text-slate-400 font-semibold">Operating Timings</label>
-                <input type="text" id="adminset-timings" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div class="space-y-1.5">
-                <label class="text-slate-400 font-semibold">Contact Phone</label>
-                <input type="text" id="adminset-phone" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500">
-              </div>
-              <div class="space-y-1.5">
-                <label class="text-slate-400 font-semibold">WhatsApp Number</label>
-                <input type="text" id="adminset-whatsapp" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500">
-              </div>
-              <div class="space-y-1.5">
-                <label class="text-slate-400 font-semibold">Contact Email</label>
-                <input type="email" id="adminset-email" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-indigo-500">
-              </div>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
-              <div class="space-y-1.5 sm:col-span-2">
-                <label class="text-slate-400 font-semibold">Address Location</label>
-                <input type="text" id="adminset-address" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-              </div>
-              <div class="grid grid-cols-2 gap-4">
-                <div class="space-y-1.5">
-                  <label class="text-slate-400 font-semibold">Total Seats</label>
-                  <input type="number" id="adminset-total-seats" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-                </div>
-                <div class="space-y-1.5">
-                  <label class="text-slate-400 font-semibold">Occupied Seats</label>
-                  <input type="number" id="adminset-occupied-seats" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-                </div>
-              </div>
-            </div>
-
-            <button type="submit" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow">Save Settings Config</button>
-          </form>
-
-          <!-- announcements & gallery -->
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border-t border-white/10 pt-6">
-            
-            <!-- Announcement logs -->
-            <div class="space-y-4">
-              <h4 class="font-extrabold text-sm text-white">Manage Landing Page Announcements</h4>
-              <form onsubmit="handleAdminAddAnnouncement(event)" class="flex gap-2">
-                <input type="text" id="new-announcement-input" placeholder="Add announcement line..." required class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500">
-                <button type="submit" class="px-4 bg-indigo-600 rounded-xl font-bold">Add</button>
-              </form>
-              <div id="admin-announcements-list-editor" class="space-y-2"></div>
-            </div>
-
-            <!-- Gallery logs -->
-            <div class="space-y-4">
-              <h4 class="font-extrabold text-sm text-white">Manage Photo Gallery Collection</h4>
-              <form onsubmit="handleAdminAddGallery(event)" class="flex gap-2">
-                <input type="text" id="new-gallery-input" placeholder="Paste image URL (https://unsplash...)" required class="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-2.5 text-white focus:outline-none focus:border-indigo-500">
-                <button type="submit" class="px-4 bg-indigo-600 rounded-xl font-bold">Add</button>
-              </form>
-              <div id="admin-gallery-grid-editor" class="grid grid-cols-4 gap-2"></div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
     </div>
 
   </main>
@@ -1090,10 +476,10 @@
         <div>
           <h3 class="text-white font-semibold text-sm tracking-wider uppercase mb-4">Quick Links</h3>
           <ul class="space-y-2 text-xs">
-            <li><a href="javascript:void(0)" onclick="scrollToSection('landing-plans')" class="hover:text-indigo-400">Membership Price Passes</a></li>
-            <li><a href="javascript:void(0)" onclick="scrollToSection('landing-gallery')" class="hover:text-indigo-400">Hall Gallery Spots</a></li>
+            <li><a href="javascript:void(0)" onclick="scrollToSection('landing-plans')" class="hover:text-indigo-400">Membership Passes</a></li>
+            <li><a href="javascript:void(0)" onclick="scrollToSection('landing-gallery')" class="hover:text-indigo-400">Gallery Spots</a></li>
             <li><a href="javascript:void(0)" onclick="scrollToSection('landing-rules')" class="hover:text-indigo-400">Adhered Rules</a></li>
-            <li><button onclick="triggerWhatsAppBooking()" class="hover:text-indigo-400 text-left">Book Study Cabin (WhatsApp)</button></li>
+            <li><button onclick="openWhatsAppModal('General')" class="hover:text-indigo-400 text-left">Book on WhatsApp</button></li>
           </ul>
         </div>
 
@@ -1101,7 +487,7 @@
           <h3 class="text-white font-semibold text-sm tracking-wider uppercase">Support Contacts</h3>
           <div class="flex flex-col gap-2">
             <a id="footer-phone-link" href="tel:8210792095" class="flex items-center gap-2 hover:text-indigo-400"><i data-lucide="phone" class="w-4 h-4 text-indigo-400"></i><span id="footer-phone-val">+91 8210792095</span></a>
-            <button onclick="triggerWhatsAppBooking()" class="flex items-center gap-2 hover:text-emerald-400 text-left"><i data-lucide="message-square" class="w-4 h-4 text-emerald-400"></i><span>WhatsApp Live Chat</span></button>
+            <button onclick="openWhatsAppModal('General')" class="flex items-center gap-2 hover:text-emerald-400 text-left"><i data-lucide="message-square" class="w-4 h-4 text-emerald-400"></i><span>WhatsApp Live Chat</span></button>
             <a href="https://maps.google.com/?q=Janki-Lalan+Commercial+Building,+Khatangi+Kothi,+Gaya-Fatehpur+State+Highway,+Bihar" target="_blank" class="flex items-start gap-2 hover:text-indigo-400"><i data-lucide="map-pin" class="w-4 h-4 text-indigo-400 shrink-0 mt-0.5"></i><span class="leading-snug">Janki-Lalan Building, Gaya Highway</span></a>
           </div>
         </div>
@@ -1109,129 +495,86 @@
 
       <div class="mt-12 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
         <div class="flex items-center gap-2"><i data-lucide="clock" class="w-4 h-4 text-indigo-400"></i><span>Open Days Timings: <span id="footer-timings-val">06:00 AM - 10:00 PM</span></span></div>
-        <p>&copy; 2026 The Study Point Library. All rights reserved.</p>
+        <div class="flex items-center gap-4">
+          <button onclick="openAdminSettingsPrompt()" class="hover:text-indigo-400 text-[10px]">Admin Login Settings</button>
+          <p>&copy; 2026 The Study Point Library. All rights reserved.</p>
+        </div>
       </div>
     </div>
   </footer>
 
   <!-- 5. LIGHTBOX GALLERY MODAL -->
   <div id="lightbox-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeLightbox()">
-    <button class="absolute top-4 right-4 text-white hover:text-slate-300 p-2 text-xl font-bold">✕</button>
+    <button class="absolute top-4 right-4 text-white hover:text-slate-300 p-2 text-xl font-bold">âœ•</button>
     <div class="max-w-4xl max-h-[90vh] overflow-hidden rounded-2xl border border-white/10" onclick="event.stopPropagation()">
       <img id="lightbox-image" src="" alt="Preview image" class="max-w-full max-h-[80vh] object-contain">
     </div>
   </div>
 
-  <!-- 6. DYNAMIC AUTH MODAL -->
-  <div id="auth-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeAuthModal()">
+  <!-- 6. WHATSAPP BOOKING POPUP MODAL -->
+  <div id="whatsapp-booking-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeWhatsAppModal()">
     <div class="w-full max-w-md glass-card p-8 rounded-3xl border border-white/10 shadow-2xl relative space-y-6 text-xs" onclick="event.stopPropagation()">
       
-      <!-- Close button -->
-      <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">✕</button>
+      <button onclick="closeWhatsAppModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white p-1">âœ•</button>
 
-      <!-- CARD 1: LOGIN -->
-      <div id="auth-card-login" class="space-y-6">
-        <div class="text-center space-y-1">
-          <h2 class="text-xl font-extrabold text-white">Welcome Back</h2>
-          <p class="text-slate-400 text-[10px]">Enter credentials to access your study desk</p>
-        </div>
-        <form onsubmit="handleAuthSubmit(event, 'login')" class="space-y-4">
-          <div class="space-y-1.5">
-            <label class="text-slate-400 font-semibold">Email Address</label>
-            <input type="email" id="login-email" required placeholder="student@thestudypointlibrary.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-          </div>
-          <div class="space-y-1.5">
-            <div class="flex justify-between items-center">
-              <label class="text-slate-400 font-semibold">Password</label>
-              <button type="button" onclick="switchAuthCard('forgot')" class="text-indigo-400 hover:underline text-[9px]">Forgot Password?</button>
-            </div>
-            <input type="password" id="login-password" required placeholder="••••••••" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-          </div>
-          <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow">Sign In</button>
-        </form>
-        
-        <div class="text-center text-[10px] text-slate-400 pt-2 border-t border-white/5">
-          Don't have an account? <button onclick="switchAuthCard('register')" class="text-indigo-400 font-bold hover:underline">Sign Up</button>
-        </div>
-
-        <div class="bg-slate-900 border border-white/5 rounded-xl p-3 text-[9px] text-slate-400 space-y-1">
-          <p class="font-bold text-white mb-0.5">🔑 Sandbox Credentials:</p>
-          <p>• Student: <span class="text-indigo-300">student@thestudypointlibrary.com</span> (pwd: <span class="text-slate-200">studentpassword</span>)</p>
-          <p>• Admin: <span class="text-indigo-300">admin@thestudypointlibrary.com</span> (pwd: <span class="text-slate-200">adminpassword</span>)</p>
-        </div>
+      <div class="text-center space-y-1">
+        <h2 class="text-xl font-extrabold text-white flex items-center justify-center gap-2">
+          <i data-lucide="message-square" class="w-6 h-6 text-emerald-400"></i>
+          <span>WhatsApp Booking Form</span>
+        </h2>
+        <p class="text-slate-400 text-[10px]">Prefill your study preferences below to check availability instantly on WhatsApp</p>
       </div>
 
-      <!-- CARD 2: REGISTER -->
-      <div id="auth-card-register" class="space-y-6 hidden">
-        <div class="text-center space-y-1">
-          <h2 class="text-xl font-extrabold text-white">Create Account</h2>
-          <p class="text-slate-400 text-[10px]">Onboard to reserve study spaces instantly</p>
+      <form onsubmit="handleWhatsAppFormSubmit(event)" class="space-y-4">
+        <div class="space-y-1.5">
+          <label class="text-slate-400 font-semibold">Your Full Name *</label>
+          <input type="text" id="wa-name" required placeholder="Enter name" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
         </div>
-        <form onsubmit="handleAuthSubmit(event, 'register')" class="space-y-4">
-          <div class="space-y-1.5">
-            <label class="text-slate-400 font-semibold">Full Name *</label>
-            <input type="text" id="reg-name" required placeholder="Enter name" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-          </div>
-          <div class="space-y-1.5">
-            <label class="text-slate-400 font-semibold">Email Address *</label>
-            <input type="email" id="reg-email" required placeholder="student@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-          </div>
-          <div class="space-y-1.5">
-            <label class="text-slate-400 font-semibold">Phone Number *</label>
-            <input type="text" id="reg-phone" required placeholder="Enter 10-digit number" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-          </div>
-          <div class="space-y-1.5">
-            <label class="text-slate-400 font-semibold">Password *</label>
-            <input type="password" id="reg-password" required placeholder="Create password" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-          </div>
-          <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow">Register</button>
-        </form>
-        <div class="text-center text-[10px] text-slate-400 pt-2 border-t border-white/5">
-          Already have an account? <button onclick="switchAuthCard('login')" class="text-indigo-400 font-bold hover:underline">Log In</button>
-        </div>
-      </div>
 
-      <!-- CARD 3: FORGOT PASSWORD -->
-      <div id="auth-card-forgot" class="space-y-6 hidden">
-        <div class="text-center space-y-1">
-          <h2 class="text-xl font-extrabold text-white">Reset Password</h2>
-          <p class="text-slate-400 text-[10px]">Recover your account credentials</p>
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-slate-400 font-semibold">Choose Date *</label>
+            <input type="date" id="wa-date" required class="w-full bg-white/5 border border-white/10 rounded-xl px-3 py-3 text-white focus:outline-none">
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-slate-400 font-semibold">Selected Pass</label>
+            <input type="text" id="wa-pass" readonly class="w-full bg-white/10 border border-white/10 rounded-xl px-3 py-3 text-slate-300 focus:outline-none">
+          </div>
         </div>
-        <div id="forgot-step-request">
-          <form onsubmit="handleForgotPasswordRequest(event)" class="space-y-4">
-            <div class="space-y-1.5">
-              <label class="text-slate-400 font-semibold">Enter Registered Email</label>
-              <input type="email" id="forgot-email" required placeholder="aspirant@email.com" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-            </div>
-            <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow">Send Reset token</button>
-          </form>
-        </div>
-        <div id="forgot-step-verify" class="hidden space-y-4">
-          <form onsubmit="handleForgotPasswordVerify(event)" class="space-y-4">
-            <div class="space-y-1.5">
-              <label class="text-slate-400 font-semibold">Reset Token</label>
-              <input type="text" id="forgot-token-val" required placeholder="Enter token from pop-up" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-            </div>
-            <div class="space-y-1.5">
-              <label class="text-slate-400 font-semibold">New Password</label>
-              <input type="password" id="forgot-new-password" required placeholder="Create password" class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none">
-            </div>
-            <button type="submit" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl transition-all shadow">Confirm Reset</button>
-          </form>
-        </div>
-        <div class="text-center text-[10px] text-slate-400 pt-2 border-t border-white/5">
-          Back to <button onclick="switchAuthCard('login')" class="text-indigo-400 font-bold hover:underline">Sign In</button>
-        </div>
-      </div>
 
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-1.5">
+            <label class="text-slate-400 font-semibold">Time Slot *</label>
+            <select id="wa-slot" class="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-3 text-slate-200 focus:outline-none">
+              <option value="08:00 AM - 12:00 PM">08:00 AM - 12:00 PM</option>
+              <option value="12:00 PM - 04:00 PM">12:00 PM - 04:00 PM</option>
+              <option value="04:00 PM - 08:00 PM">04:00 PM - 08:00 PM</option>
+              <option value="06:00 PM - 10:00 PM">06:00 PM - 10:00 PM</option>
+            </select>
+          </div>
+          <div class="space-y-1.5">
+            <label class="text-slate-400 font-semibold">Duration *</label>
+            <select id="wa-duration" class="w-full bg-slate-900 border border-white/10 rounded-xl px-3 py-3 text-slate-200 focus:outline-none">
+              <option value="2 Hours">2 Hours</option>
+              <option value="4 Hours">4 Hours</option>
+              <option value="6 Hours">6 Hours</option>
+              <option value="8 Hours">8 Hours (Max)</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="w-full py-3 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-xl transition-all shadow flex items-center justify-center gap-2">
+          <i data-lucide="message-square" class="w-4 h-4"></i>
+          <span>Send Booking Request on WhatsApp</span>
+        </button>
+      </form>
     </div>
   </div>
 
-  <!-- 7. APPLICATION DATABASE IN-BROWSER JS -->
+  <!-- 7. APPLICATION LOGIC JS -->
   <script>
     // --- LOCAL STORAGE DATA SEEDER ---
     const initLocalStorage = () => {
-      // Library config settings
       if (!localStorage.getItem('lib_settings')) {
         const defaultSettings = {
           libraryName: 'The Study Point Library',
@@ -1244,110 +587,33 @@
           totalSeats: 80,
           occupiedSeats: 62,
           announcements: [
-            'Welcome to The Study Point Library! Get 10% off on yearly membership passes.',
-            'Maintain quiet and keep mobile phones on silent inside reading halls.'
+            'Welcome to The Study Point Library! Get 10% off on yearly membership passes.'
           ],
           gallery: [
             'https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&q=80&w=800',
             'https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&q=80&w=800',
             'https://images.unsplash.com/photo-1568667256549-094345857637?auto=format&fit=crop&q=80&w=800',
             'https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&q=80&w=800'
+          ],
+          plans: [
+            { name: 'Daily Pass', price: 50, duration: '1 Day', benefits: ['Study hall access', 'High speed Wi-Fi', 'Drinking RO water'] },
+            { name: 'Weekly Pass', price: 250, duration: '7 Days', benefits: ['Study hall access', 'High speed Wi-Fi', 'Locker access'] },
+            { name: 'Monthly Pass', price: 800, duration: '30 Days', benefits: ['Cabin seat preference', 'High speed Wi-Fi', 'Locker facility'] },
+            { name: 'Quarterly Pass', price: 2200, duration: '90 Days', benefits: ['Allocated Cabin space', 'High speed Wi-Fi', 'Free Magazine'] },
+            { name: 'Half-Yearly Pass', price: 4000, duration: '180 Days', benefits: ['Allocated Cabin space', 'High speed Wi-Fi', 'Monthly Magazines'] },
+            { name: 'Yearly Pass', price: 7500, duration: '365 Days', benefits: ['Permanent Study Cabin', 'Locker facility & AC', '10% Discount'] }
           ]
         };
         localStorage.setItem('lib_settings', JSON.stringify(defaultSettings));
       }
 
-      // Seed Cabins C1 to C10
-      if (!localStorage.getItem('lib_cabins')) {
-        const defaultCabins = [];
-        for (let i = 1; i <= 10; i++) {
-          defaultCabins.push({
-            id: `cabin-${i}`,
-            cabinNumber: `C${i}`,
-            capacity: i <= 8 ? 1 : 2, // Cabins 9 & 10 are double seats
-            isBlocked: false
-          });
-        }
-        localStorage.setItem('lib_cabins', JSON.stringify(defaultCabins));
-      }
-
-      // Seed Users
-      if (!localStorage.getItem('lib_users')) {
-        const defaultUsers = [
-          {
-            id: 'user-admin',
-            name: 'Mritunjay Kumar (Admin)',
-            email: 'admin@thestudypointlibrary.com',
-            phone: '8210792095',
-            password: 'adminpassword',
-            role: 'admin',
-            isVerified: true
-          },
-          {
-            id: 'user-student',
-            name: 'Aman Sharma',
-            email: 'student@thestudypointlibrary.com',
-            phone: '9876543210',
-            password: 'studentpassword',
-            role: 'student',
-            isVerified: true,
-            membership: {
-              status: 'active',
-              planName: 'Monthly Pass',
-              expiryDate: '2026-07-26',
-              remainingDays: 30
-            },
-            cabinNumber: 'C1'
-          }
-        ];
-        localStorage.setItem('lib_users', JSON.stringify(defaultUsers));
-      }
-
-      // Seed Reviews
       if (!localStorage.getItem('lib_reviews')) {
         const defaultReviews = [
-          { id: 'rev-1', studentName: 'Aman Sharma', rating: 5, comment: 'Best study environment in Gaya. The individual cabins are perfect for focused preparation.', isApproved: true, createdAt: new Date().toISOString() },
-          { id: 'rev-2', studentName: 'Priya Singh', rating: 5, comment: 'High speed Wi-Fi and 24x7 power backup have made my studies very smooth.', isApproved: true, createdAt: new Date().toISOString() },
-          { id: 'rev-3', studentName: 'Ravi Kumar', rating: 4, comment: 'AC reading hall is very silent. Safe parking is a big relief.', isApproved: false, createdAt: new Date().toISOString() }
+          { studentName: 'Aman Sharma', rating: 5, comment: 'Best study environment in Gaya. The individual cabins are perfect for focused preparation.', isApproved: true },
+          { studentName: 'Priya Singh', rating: 5, comment: 'High speed Wi-Fi and 24x7 power backup have made my studies very smooth.', isApproved: true },
+          { studentName: 'Ravi Kumar', rating: 4, comment: 'AC reading hall is very silent. Safe parking is a big relief.', isApproved: true }
         ];
         localStorage.setItem('lib_reviews', JSON.stringify(defaultReviews));
-      }
-
-      // Seed Billing payments
-      if (!localStorage.getItem('lib_payments')) {
-        const defaultPayments = [
-          { id: 'pay-1', studentId: 'user-student', studentName: 'Aman Sharma', planName: 'Monthly Pass', amount: 800, paymentMethod: 'UPI', paymentStatus: 'success', transactionId: 'TXN_9876543210', invoiceNumber: 'INV-202606-1025', createdAt: new Date().toISOString() }
-        ];
-        localStorage.setItem('lib_payments', JSON.stringify(defaultPayments));
-      }
-
-      // Seed Bookings
-      if (!localStorage.getItem('lib_bookings')) {
-        const tomorrow = new Date();
-        tomorrow.setDate(tomorrow.getDate() + 1);
-        const yyyy = tomorrow.getFullYear();
-        const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
-        const dd = String(tomorrow.getDate()).padStart(2, '0');
-        const defaultBookings = [
-          { id: 'bk-1', studentId: 'user-student', studentName: 'Aman Sharma', cabinId: 'cabin-1', cabinNumber: 'C1', date: `${yyyy}-${mm}-${dd}`, timeSlot: '08:00-12:00', durationHours: 4, status: 'approved', createdAt: new Date().toISOString() }
-        ];
-        localStorage.setItem('lib_bookings', JSON.stringify(defaultBookings));
-      }
-
-      // Seed Messages
-      if (!localStorage.getItem('lib_messages')) {
-        const defaultMessages = [
-          { id: 'msg-1', name: 'Rohan Gupta', email: 'rohan@gmail.com', phone: '9988776655', message: 'I want to ask if lockers are available for weekly pass members?', status: 'unread', createdAt: new Date().toISOString() }
-        ];
-        localStorage.setItem('lib_messages', JSON.stringify(defaultMessages));
-      }
-
-      // Seed Notifications
-      if (!localStorage.getItem('lib_notifications')) {
-        const defaultNotifs = [
-          { id: 'not-1', userId: 'user-student', message: 'Welcome to The Study Point Library portal. Your account is verified.', isRead: false, createdAt: new Date().toISOString() }
-        ];
-        localStorage.setItem('lib_notifications', JSON.stringify(defaultNotifs));
       }
     };
 
@@ -1356,46 +622,15 @@
 
     // --- STATE MANAGEMENT POINTERS ---
     let appSettings = JSON.parse(localStorage.getItem('lib_settings'));
-    let appCabins = JSON.parse(localStorage.getItem('lib_cabins'));
-    let appUsers = JSON.parse(localStorage.getItem('lib_users'));
-    let appBookings = JSON.parse(localStorage.getItem('lib_bookings'));
-    let appPayments = JSON.parse(localStorage.getItem('lib_payments'));
     let appReviews = JSON.parse(localStorage.getItem('lib_reviews'));
-    let appMessages = JSON.parse(localStorage.getItem('lib_messages'));
-    let appNotifications = JSON.parse(localStorage.getItem('lib_notifications'));
 
-    let loggedUser = null;
-    let activeDashTab = 'overview';
-    let activeAdminTab = 'bookings';
-
-    let mockResetToken = '';
-    let mockResetEmail = '';
-
-    // --- HELPER UTILITIES ---
-    const saveStateToLocalStorage = (key, val) => {
-      localStorage.setItem(key, JSON.stringify(val));
-    };
-
+    // --- TOAST HELPER ---
     const showToast = (message, type = 'success') => {
       const container = document.getElementById('toast-container');
       const id = Date.now();
 
-      let classes = '';
-      let icon = '';
-
-      if (type === 'success') {
-        classes = 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300';
-        icon = 'check-circle';
-      } else if (type === 'error') {
-        classes = 'bg-rose-500/10 border-rose-500/20 text-rose-300';
-        icon = 'x-circle';
-      } else if (type === 'warning') {
-        classes = 'bg-amber-500/10 border-amber-500/20 text-amber-300';
-        icon = 'alert-triangle';
-      } else {
-        classes = 'bg-indigo-500/10 border-indigo-500/20 text-indigo-300';
-        icon = 'info';
-      }
+      let classes = type === 'success' ? 'bg-emerald-500/10 border-emerald-500/20 text-emerald-300' : 'bg-rose-500/10 border-rose-500/20 text-rose-300';
+      let icon = type === 'success' ? 'check-circle' : 'x-circle';
 
       const toastNode = document.createElement('div');
       toastNode.id = `toast-${id}`;
@@ -1414,16 +649,13 @@
       }, 4000);
     };
 
+    // Routing visibility manager
     const showView = (viewName) => {
       document.querySelectorAll('.view-panel').forEach(v => v.classList.add('hidden'));
       const active = document.getElementById(`view-${viewName}`);
       if (active) active.classList.remove('hidden');
 
-      closeAuthModal();
-
-      if (viewName === 'seats') renderSeatsVisualizer();
-      if (viewName === 'dashboard') renderDashboardState();
-      if (viewName === 'admin') refreshAdminDataState();
+      if (viewName === 'admin') populateAdminSettingsForm();
     };
 
     const scrollToSection = (id) => {
@@ -1432,6 +664,7 @@
       if (el) el.scrollIntoView({ behavior: 'smooth' });
     };
 
+    // Dark/Light Toggles
     const toggleDarkMode = () => {
       const isDark = document.documentElement.classList.toggle('dark');
       localStorage.setItem('theme', isDark ? 'dark' : 'light');
@@ -1447,42 +680,8 @@
       document.getElementById('theme-icon-moon').classList.toggle('hidden', isDark);
     };
 
-    const timeToMinutes = (str) => {
-      const [h, m] = str.split(':').map(Number);
-      return h * 60 + m;
-    };
-
-    const checkOverlap = (slot1, slot2) => {
-      const [start1, end1] = slot1.split('-').map(timeToMinutes);
-      const [start2, end2] = slot2.split('-').map(timeToMinutes);
-      return (start1 < end2) && (end1 > start2);
-    };
-
-    const getComputedCabinStatus = (cabinId, cabinNumber, isBlocked) => {
-      if (isBlocked) return 'occupied';
-
-      const now = new Date();
-      const yyyy = now.getFullYear();
-      const mm = String(now.getMonth() + 1).padStart(2, '0');
-      const dd = String(now.getDate()).padStart(2, '0');
-      const todayStr = `${yyyy}-${mm}-${dd}`;
-      const currentMinutes = now.getHours() * 60 + now.getMinutes();
-
-      const todayBookings = appBookings.filter(b => b.cabinId === cabinId && b.date === todayStr && (b.status === 'approved' || b.status === 'pending'));
-
-      if (todayBookings.length === 0) return 'available';
-
-      const isOccupiedNow = todayBookings.some(b => {
-        const [start, end] = b.timeSlot.split('-').map(timeToMinutes);
-        return currentMinutes >= start && currentMinutes <= end;
-      });
-
-      return isOccupiedNow ? 'occupied' : 'reserved';
-    };
-
-    // --- RENDERING PAGE MODULES ---
+    // --- RENDERING PAGE DATA ---
     const renderLandingContent = () => {
-      document.title = `${appSettings.libraryName} | Premium Cabin Booking System`;
       document.getElementById('header-library-name').innerText = appSettings.libraryName;
       document.getElementById('header-library-tagline').innerText = appSettings.tagline;
       document.getElementById('hero-library-name').innerText = appSettings.libraryName;
@@ -1499,6 +698,7 @@
       document.getElementById('footer-phone-val').innerText = `+91 ${appSettings.contactNumber}`;
       document.getElementById('footer-timings-val').innerText = appSettings.timings;
 
+      // Update seats count indicator
       const avail = Math.max(0, appSettings.totalSeats - appSettings.occupiedSeats);
       document.getElementById('header-available-seats').innerText = `Seats: ${avail} Available`;
 
@@ -1506,6 +706,32 @@
         document.getElementById('announcement-text').innerText = appSettings.announcements[0];
       }
 
+      // Render pricing cards
+      const plansContainer = document.getElementById('plans-container');
+      plansContainer.innerHTML = '';
+      appSettings.plans.forEach(plan => {
+        let benefitsList = '';
+        plan.benefits.forEach(b => {
+          benefitsList += `<li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-emerald-400"></i><span>${b}</span></li>`;
+        });
+
+        plansContainer.innerHTML += `
+          <div class="glass-card rounded-2xl border border-white/5 flex flex-col justify-between overflow-hidden relative group">
+            <div class="p-8 space-y-6">
+              <h3 class="font-extrabold text-xl text-white">${plan.name}</h3>
+              <p class="text-[10px] text-indigo-400 font-bold tracking-widest uppercase">Duration: ${plan.duration}</p>
+              <div class="text-3xl font-extrabold text-white">â‚¹${plan.price}</div>
+              <hr class="border-white/5">
+              <ul class="space-y-3 text-xs text-slate-300">${benefitsList}</ul>
+            </div>
+            <div class="p-8 pt-0">
+              <button onclick="openWhatsAppModal('${plan.name}')" class="w-full py-3 bg-indigo-600 hover:bg-indigo-500 text-white font-bold rounded-xl text-xs transition-colors">Book Pass Now</button>
+            </div>
+          </div>
+        `;
+      });
+
+      // Render Gallery
       const galleryBox = document.getElementById('gallery-grid');
       galleryBox.innerHTML = '';
       appSettings.gallery.forEach(img => {
@@ -1519,10 +745,10 @@
         `;
       });
 
+      // Render testimonials list
       const reviewBox = document.getElementById('reviews-list-grid');
       reviewBox.innerHTML = '';
-      const approvedReviews = appReviews.filter(r => r.isApproved);
-      approvedReviews.slice(0, 3).forEach(rev => {
+      appReviews.slice(0, 3).forEach(rev => {
         let stars = '';
         for (let i = 0; i < rev.rating; i++) {
           stars += `<i data-lucide="star" class="w-4 h-4 fill-current text-yellow-500"></i>`;
@@ -1544,737 +770,71 @@
       lucide.createIcons();
     };
 
-    const renderSeatsVisualizer = () => {
-      document.getElementById('seat-total-val').innerText = appSettings.totalSeats;
-      document.getElementById('seat-occup-val').innerText = appSettings.occupiedSeats;
-      document.getElementById('seat-avail-val').innerText = Math.max(0, appSettings.totalSeats - appSettings.occupiedSeats);
-
-      const gridBox = document.getElementById('seats-grid-visualizer');
-      gridBox.innerHTML = '';
-      for (let i = 1; i <= appSettings.totalSeats; i++) {
-        const isOccupied = i <= appSettings.occupiedSeats;
-        gridBox.innerHTML += `
-          <div class="py-3 rounded-lg border text-center font-bold text-xs relative select-none
-            ${isOccupied ? 'bg-rose-500/15 border-rose-500/30 text-rose-300' : 'bg-emerald-500/15 border-emerald-500/30 text-emerald-300'}"
-            title="Seat ${i}: ${isOccupied ? 'Occupied' : 'Available'}"
-          >
-            <span>${String(i).padStart(2, '0')}</span>
-            <span class="absolute top-0.5 right-0.5 w-1 h-1 rounded-full ${isOccupied ? 'bg-rose-400' : 'bg-emerald-400'}"></span>
-          </div>
-        `;
-      }
-    };
-
-    const renderDashboardState = () => {
-      if (!loggedUser) return;
-      document.getElementById('dash-username').innerText = loggedUser.name;
-
-      const statusActive = document.getElementById('dash-pass-status-active');
-      const statusInactive = document.getElementById('dash-pass-status-inactive');
+    // --- WHATSAPP WIZARD POPUP MODAL ---
+    const openWhatsAppModal = (passName) => {
+      document.getElementById('whatsapp-booking-modal').classList.remove('hidden');
+      document.getElementById('whatsapp-booking-modal').classList.add('flex');
       
-      if (loggedUser.membership && loggedUser.membership.status === 'active') {
-        statusActive.classList.remove('hidden');
-        statusInactive.classList.add('hidden');
-        document.getElementById('dash-pass-name').innerText = loggedUser.membership.planName;
-        document.getElementById('dash-pass-expiry').innerText = `Expires: ${loggedUser.membership.expiryDate}`;
-        
-        const diff = new Date(loggedUser.membership.expiryDate) - new Date();
-        const days = Math.max(0, Math.ceil(diff / (1000 * 60 * 60 * 24)));
-        document.getElementById('dash-pass-days-left').innerText = `${days} days left`;
-      } else {
-        statusActive.classList.add('hidden');
-        statusInactive.classList.remove('hidden');
-      }
+      document.getElementById('wa-pass').value = passName;
 
-      document.getElementById('dash-allocated-cabin-value').innerText = loggedUser.cabinNumber || 'None Reserved';
-
-      const notifBox = document.getElementById('dash-notifications-list');
-      notifBox.innerHTML = '';
-      const userNotifs = appNotifications.filter(n => n.userId === loggedUser.id);
-      if (userNotifs.length === 0) {
-        notifBox.innerHTML = '<p class="text-slate-500 italic">No alerts yet.</p>';
-      } else {
-        userNotifs.forEach(not => {
-          notifBox.innerHTML += `
-            <div class="p-2 bg-white/5 rounded border border-white/5 ${not.isRead ? '' : 'font-bold border-l-indigo-500'}">
-              <p class="leading-normal">${not.message}</p>
-            </div>
-          `;
-        });
-      }
-
-      const histTable = document.getElementById('dash-bookings-table-body');
-      histTable.innerHTML = '';
-      const userBookings = appBookings.filter(b => b.studentId === loggedUser.id);
-      if (userBookings.length === 0) {
-        histTable.innerHTML = '<tr><td colspan="6" class="py-6 text-center text-slate-500 italic">No bookings found.</td></tr>';
-      } else {
-        userBookings.forEach(b => {
-          histTable.innerHTML += `
-            <tr class="text-slate-200">
-              <td class="py-3 font-bold text-indigo-400">${b.cabinNumber}</td>
-              <td class="py-3">${b.date}</td>
-              <td class="py-3 font-medium">${b.timeSlot}</td>
-              <td class="py-3 text-slate-400">${b.durationHours} hrs</td>
-              <td class="py-3">
-                <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase
-                  ${b.status === 'approved' ? 'bg-emerald-500/10 text-emerald-400' : ''}
-                  ${b.status === 'pending' ? 'bg-amber-500/10 text-amber-400' : ''}
-                  ${b.status === 'rejected' ? 'bg-rose-500/10 text-rose-400' : ''}
-                  ${b.status === 'cancelled' ? 'bg-slate-800 text-slate-500' : ''}">
-                  ${b.status}
-                </span>
-              </td>
-              <td class="py-3 text-right">
-                ${b.status === 'approved' ? `<button onclick="handleCancelBooking('${b.id}')" class="text-[10px] font-bold text-rose-450 hover:underline">Cancel</button>` : ''}
-              </td>
-            </tr>
-          `;
-        });
-      }
-
-      const billingTable = document.getElementById('dash-payments-table-body');
-      billingTable.innerHTML = '';
-      const userPayments = appPayments.filter(p => p.studentId === loggedUser.id);
-      if (userPayments.length === 0) {
-        billingTable.innerHTML = '<tr><td colspan="6" class="py-6 text-center text-slate-500 italic">No transactions found.</td></tr>';
-      } else {
-        userPayments.forEach(p => {
-          billingTable.innerHTML += `
-            <tr class="text-slate-200">
-              <td class="py-3 font-mono text-slate-400">${p.invoiceNumber}</td>
-              <td class="py-3 font-bold">${p.planName}</td>
-              <td class="py-3 font-extrabold">₹${p.amount}</td>
-              <td class="py-3 text-slate-400">${p.paymentMethod}</td>
-              <td class="py-3">${new Date(p.createdAt).toLocaleDateString()}</td>
-              <td class="py-3 text-right">
-                <span class="px-2 py-0.5 rounded-full text-[9px] font-extrabold uppercase
-                  ${p.paymentStatus === 'success' ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'}">
-                  ${p.paymentStatus}
-                </span>
-              </td>
-            </tr>
-          `;
-        });
-      }
-
-      document.getElementById('profile-name').value = loggedUser.name;
-      document.getElementById('profile-phone').value = loggedUser.phone;
+      // Set default tomorrow date
+      const tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      const yyyy = tomorrow.getFullYear();
+      const mm = String(tomorrow.getMonth() + 1).padStart(2, '0');
+      const dd = String(tomorrow.getDate()).padStart(2, '0');
+      document.getElementById('wa-date').value = `${yyyy}-${mm}-${dd}`;
     };
 
-    const switchDashboardTab = (tabId) => {
-      activeDashTab = tabId;
-      document.querySelectorAll('.dash-tab-panel').forEach(p => p.classList.add('hidden'));
-      document.querySelectorAll('.tab-btn').forEach(btn => {
-        btn.className = 'tab-btn flex items-center gap-2.5 px-4 py-3 rounded-xl font-bold text-slate-400 hover:text-white hover:bg-white/5 text-left';
-      });
-
-      document.getElementById(`dash-tab-${tabId}`).classList.remove('hidden');
-      const activeBtn = document.getElementById(`tabbtn-${tabId}`);
-      if (activeBtn) activeBtn.className = 'tab-btn flex items-center gap-2.5 px-4 py-3 rounded-xl font-bold bg-indigo-600 text-white text-left';
-
-      if (tabId === 'booking') runWizardAvailabilityCheck();
+    const closeWhatsAppModal = () => {
+      document.getElementById('whatsapp-booking-modal').classList.add('hidden');
+      document.getElementById('whatsapp-booking-modal').classList.remove('flex');
     };
 
-    let wizardCabinSelection = null;
-    const runWizardAvailabilityCheck = () => {
-      const date = document.getElementById('book-date').value;
-      const slot = document.getElementById('book-slot').value;
-      if (!date) return;
-
-      wizardCabinSelection = null;
-      document.getElementById('wizard-confirm-area').classList.add('hidden');
-
-      const gridBox = document.getElementById('booking-cabins-grid');
-      gridBox.innerHTML = '';
-
-      appCabins.forEach(cabin => {
-        const dateBookings = appBookings.filter(b => b.cabinId === cabin.id && b.date === date && (b.status === 'approved' || b.status === 'pending'));
-        const isBooked = cabin.isBlocked || dateBookings.some(b => checkOverlap(b.timeSlot, slot));
-
-        gridBox.innerHTML += `
-          <button
-            type="button"
-            ${isBooked ? 'disabled' : ''}
-            onclick="selectWizardCabin('${cabin.id}', '${cabin.cabinNumber}')"
-            id="wizard-cabin-btn-${cabin.id}"
-            class="p-4 rounded-xl border text-center font-bold select-none transition-all flex flex-col items-center gap-1
-              ${isBooked 
-                ? 'bg-rose-500/10 border-rose-500/20 text-rose-455 opacity-60 cursor-not-allowed' 
-                : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20'}"
-          >
-            <span class="text-sm">${cabin.cabinNumber}</span>
-            <span class="text-[9px] font-normal uppercase tracking-wider">${isBooked ? 'Booked' : 'Open'}</span>
-          </button>
-        `;
-      });
-    };
-
-    const selectWizardCabin = (id, cabinNumber) => {
-      wizardCabinSelection = { id, cabinNumber };
-      
-      appCabins.forEach(cab => {
-        const btn = document.getElementById(`wizard-cabin-btn-${cab.id}`);
-        if (btn && !btn.disabled) {
-          btn.className = 'p-4 rounded-xl border text-center font-bold select-none transition-all flex flex-col items-center gap-1 bg-emerald-500/10 border-emerald-500/20 text-emerald-400 hover:bg-emerald-500/20';
-        }
-      });
-
-      const activeBtn = document.getElementById(`wizard-cabin-btn-${id}`);
-      if (activeBtn) {
-        activeBtn.className = 'p-4 rounded-xl border text-center font-bold select-none transition-all flex flex-col items-center gap-1 bg-indigo-600 border-indigo-400 text-white shadow-lg';
-      }
-
-      const date = document.getElementById('book-date').value;
-      const slot = document.getElementById('book-slot').value;
-      const duration = document.getElementById('book-duration').value;
-
-      document.getElementById('wizard-confirm-area').classList.remove('hidden');
-      document.getElementById('wizard-summary-text').innerText = `Cabin ${cabinNumber} | Date: ${date} | Slot: ${slot} (${duration} hrs Duration)`;
-    };
-
-    const confirmWizardBooking = () => {
-      if (!loggedUser || !wizardCabinSelection) return;
-
-      if (!loggedUser.membership || loggedUser.membership.status !== 'active') {
-        showToast('Active membership pass required! Purchase a pass first.', 'error');
-        switchDashboardTab('billing');
-        return;
-      }
-
-      const date = document.getElementById('book-date').value;
-      const slot = document.getElementById('book-slot').value;
-      const duration = Number(document.getElementById('book-duration').value);
-
-      const dayBookings = appBookings.filter(b => b.studentId === loggedUser.id && b.date === date && b.status !== 'cancelled');
-      const totalHours = dayBookings.reduce((sum, b) => sum + b.durationHours, 0);
-      if (totalHours + duration > 8) {
-        showToast(`Booking duration exceeds maximum 8-hours daily limit. Today booked: ${totalHours} hrs.`, 'warning');
-        return;
-      }
-
-      const todayStr = new Date().toISOString().split('T')[0];
-      const activeRes = appBookings.find(b => b.studentId === loggedUser.id && b.date >= todayStr && (b.status === 'approved' || b.status === 'pending'));
-      if (activeRes) {
-        showToast(`You already have an active future reservation on ${activeRes.date}. Limit is 1.`, 'warning');
-        return;
-      }
-
-      const newBk = {
-        id: `bk-${Date.now()}`,
-        studentId: loggedUser.id,
-        studentName: loggedUser.name,
-        cabinId: wizardCabinSelection.id,
-        cabinNumber: wizardCabinSelection.cabinNumber,
-        date,
-        timeSlot: slot,
-        durationHours: duration,
-        status: 'approved',
-        createdAt: new Date().toISOString()
-      };
-
-      appBookings.push(newBk);
-      saveStateToLocalStorage('lib_bookings', appBookings);
-
-      loggedUser.cabinNumber = wizardCabinSelection.cabinNumber;
-      appUsers = appUsers.map(u => u.id === loggedUser.id ? loggedUser : u);
-      saveStateToLocalStorage('lib_users', appUsers);
-
-      appNotifications.push({
-        id: `not-${Date.now()}`,
-        userId: loggedUser.id,
-        message: `Your booking for Cabin ${wizardCabinSelection.cabinNumber} on ${date} (${slot}) is confirmed.`,
-        isRead: false,
-        createdAt: new Date().toISOString()
-      });
-      saveStateToLocalStorage('lib_notifications', appNotifications);
-
-      showToast(`Cabin ${wizardCabinSelection.cabinNumber} reserved successfully!`, 'success');
-      confetti({ particleCount: 100, spread: 70, origin: { y: 0.6 } });
-
-      renderDashboardState();
-      switchDashboardTab('overview');
-    };
-
-    const handleCancelBooking = (bookingId) => {
-      appBookings = appBookings.map(b => {
-        if (b.id === bookingId) {
-          b.status = 'cancelled';
-          if (loggedUser && loggedUser.cabinNumber === b.cabinNumber) {
-            loggedUser.cabinNumber = undefined;
-            appUsers = appUsers.map(u => u.id === loggedUser.id ? loggedUser : u);
-            saveStateToLocalStorage('lib_users', appUsers);
-          }
-        }
-        return b;
-      });
-      saveStateToLocalStorage('lib_bookings', appBookings);
-      showToast('Booking cancelled.', 'success');
-      renderDashboardState();
-    };
-
-    // --- BILLING QR CODES SYSTEM ---
-    let currentCheckoutPass = null;
-
-    const buyMembershipPassSim = (name, price, days) => {
-      if (!loggedUser) {
-        showToast('Please login to buy a pass.', 'warning');
-        openAuthModal('login');
-        return;
-      }
-      showView('dashboard');
-      switchDashboardTab('billing');
-      
-      const dropdown = document.getElementById('billing-plan-select');
-      dropdown.value = `${name}|${price}|${days}`;
-    };
-
-    const handleInitiatePassPayment = (e) => {
+    const handleWhatsAppFormSubmit = (e) => {
       e.preventDefault();
-      const planVal = document.getElementById('billing-plan-select').value;
-      const method = document.getElementById('billing-method-select').value;
+      
+      const name = document.getElementById('wa-name').value;
+      const date = document.getElementById('wa-date').value;
+      const pass = document.getElementById('wa-pass').value;
+      const slot = document.getElementById('wa-slot').value;
+      const duration = document.getElementById('wa-duration').value;
 
-      if (!planVal) return;
-
-      const [name, price, days] = planVal.split('|');
-      const invNo = `INV-${new Date().getFullYear()}${String(new Date().getMonth() + 1).padStart(2, '0')}-${Math.floor(10000 + Math.random() * 90000)}`;
-
-      currentCheckoutPass = { name, price: Number(price), durationDays: Number(days), method, invoiceNumber: invNo };
-
-      document.getElementById('payment-gate-selection-area').classList.add('hidden');
-      const simBox = document.getElementById('payment-simulation-box');
-      simBox.classList.remove('hidden');
-
-      document.getElementById('sim-pay-amount').innerText = `₹${price}`;
-      document.getElementById('sim-pay-invoice').innerText = `Invoice: ${invNo}`;
-
-      const qrImage = document.getElementById('sim-qr-image');
-      const qrContainer = document.getElementById('sim-qr-container');
-
-      if (method === 'QR_Code' || method === 'UPI') {
-        qrContainer.classList.remove('hidden');
-        const upiUrl = `upi://pay?pa=8210792095@ybl&pn=The%20Study%20Point%20Library&am=${price}&cu=INR&tn=Pass_${name.replace(/\s+/g, '')}`;
-        qrImage.src = `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(upiUrl)}`;
-      } else {
-        qrContainer.classList.add('hidden');
-      }
+      const message = `Hello,\nI would like to book a study cabin.\n\nName: ${name}\nDate: ${date}\nTime: ${slot}\nDuration: ${duration}\nPass Preference: ${pass}\n\nPlease confirm availability.`;
+      
+      const url = `https://wa.me/91${appSettings.whatsAppNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
+      
+      closeWhatsAppModal();
+      showToast('Booking request sent on WhatsApp!', 'success');
+      confetti({ particleCount: 80, spread: 60 });
     };
 
-    const approvePaymentSim = () => {
-      if (!loggedUser || !currentCheckoutPass) return;
-
-      const txId = `TXN_${Date.now()}_${Math.floor(1000 + Math.random() * 9000)}`;
-
-      const newPayLog = {
-        id: `pay-${Date.now()}`,
-        studentId: loggedUser.id,
-        studentName: loggedUser.name,
-        planName: currentCheckoutPass.name,
-        amount: currentCheckoutPass.price,
-        paymentMethod: currentCheckoutPass.method,
-        paymentStatus: 'success',
-        transactionId: txId,
-        invoiceNumber: currentCheckoutPass.invoiceNumber,
-        createdAt: new Date().toISOString()
-      };
-
-      appPayments.push(newPayLog);
-      saveStateToLocalStorage('lib_payments', appPayments);
-
-      let start = new Date();
-      if (loggedUser.membership && loggedUser.membership.status === 'active') {
-        const curExp = new Date(loggedUser.membership.expiryDate);
-        if (curExp > start) start = curExp;
-      }
-
-      const expiry = new Date(start);
-      expiry.setDate(expiry.getDate() + currentCheckoutPass.durationDays);
-      const yyyy = expiry.getFullYear();
-      const mm = String(expiry.getMonth() + 1).padStart(2, '0');
-      const dd = String(expiry.getDate()).padStart(2, '0');
-
-      loggedUser.membership = {
-        status: 'active',
-        planName: currentCheckoutPass.name,
-        expiryDate: `${yyyy}-${mm}-${dd}`,
-        remainingDays: currentCheckoutPass.durationDays
-      };
-
-      appUsers = appUsers.map(u => u.id === loggedUser.id ? loggedUser : u);
-      saveStateToLocalStorage('lib_users', appUsers);
-
-      appNotifications.push({
-        id: `not-${Date.now()}`,
-        userId: loggedUser.id,
-        message: `Pass purchase ₹${currentCheckoutPass.price} for ${currentCheckoutPass.name} was successful. Invoice: ${currentCheckoutPass.invoiceNumber}`,
-        isRead: false,
-        createdAt: new Date().toISOString()
-      });
-      saveStateToLocalStorage('lib_notifications', appNotifications);
-
-      showToast('Membership pass activated successfully!', 'success');
-      confetti({ particleCount: 150, spread: 80 });
-
-      cancelPaymentSim();
-      renderDashboardState();
-      switchDashboardTab('overview');
-    };
-
-    const cancelPaymentSim = () => {
-      currentCheckoutPass = null;
-      document.getElementById('payment-gate-selection-area').classList.remove('hidden');
-      document.getElementById('payment-simulation-box').classList.add('hidden');
-    };
-
-    const handleProfileFormSubmit = (e) => {
+    const handleInquirySubmit = (e) => {
       e.preventDefault();
-      if (!loggedUser) return;
+      const name = document.getElementById('inquiry-name').value;
+      const phone = document.getElementById('inquiry-phone').value;
+      const msg = document.getElementById('inquiry-message').value;
 
-      const name = document.getElementById('profile-name').value;
-      const phone = document.getElementById('profile-phone').value;
-      const pwd = document.getElementById('profile-password').value;
+      const message = `Hello,\nI have an inquiry regarding the library.\n\nName: ${name}\nPhone: ${phone}\nInquiry: ${msg}`;
+      const url = `https://wa.me/91${appSettings.whatsAppNumber}?text=${encodeURIComponent(message)}`;
+      window.open(url, '_blank');
 
-      loggedUser.name = name;
-      loggedUser.phone = phone;
-      if (pwd) loggedUser.password = pwd;
-
-      appUsers = appUsers.map(u => u.id === loggedUser.id ? loggedUser : u);
-      saveStateToLocalStorage('lib_users', appUsers);
-      
-      showToast('Profile settings saved successfully!', 'success');
-      renderDashboardState();
-      switchDashboardTab('overview');
+      document.getElementById('inquiry-name').value = '';
+      document.getElementById('inquiry-phone').value = '';
+      document.getElementById('inquiry-message').value = '';
+      showToast('Inquiry request formatted for WhatsApp!', 'success');
     };
 
-    let selectedReviewRating = 5;
-    const setReviewFormRating = (starCount) => {
-      selectedReviewRating = starCount;
-      for (let i = 1; i <= 5; i++) {
-        const star = document.getElementById(`review-star-${i}`);
-        if (i <= starCount) {
-          star.classList.add('text-yellow-500', 'fill-yellow-500');
-          star.classList.remove('text-slate-655');
-        } else {
-          star.classList.remove('text-yellow-500', 'fill-yellow-500');
-          star.classList.add('text-slate-655');
-        }
+    // --- ADMIN DIALOG CONTROLS ---
+    const openAdminSettingsPrompt = () => {
+      const pwd = prompt('Enter Admin settings password:');
+      if (pwd === 'adminpassword') {
+        showToast('Admin verified!', 'success');
+        showView('admin');
+      } else if (pwd !== null) {
+        showToast('Invalid admin password!', 'error');
       }
-    };
-
-    const handleReviewFormSubmit = (e) => {
-      e.preventDefault();
-      if (!loggedUser) return;
-
-      const comment = document.getElementById('review-comment').value;
-
-      appReviews.push({
-        id: `rev-${Date.now()}`,
-        studentName: loggedUser.name,
-        rating: selectedReviewRating,
-        comment,
-        isApproved: false,
-        createdAt: new Date().toISOString()
-      });
-
-      saveStateToLocalStorage('lib_reviews', appReviews);
-      showToast('Review submitted successfully! It will appear once approved by Admin.', 'success');
-
-      document.getElementById('review-comment').value = '';
-      setReviewFormRating(5);
-      switchDashboardTab('overview');
-    };
-
-    // --- ADMIN CONTROLS ---
-    const switchAdminTab = (tabId) => {
-      activeAdminTab = tabId;
-      document.querySelectorAll('.admin-tab-panel').forEach(p => p.classList.add('hidden'));
-      document.querySelectorAll('.admin-tab-btn').forEach(btn => {
-        btn.className = 'admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-transparent text-slate-404 hover:text-white';
-      });
-
-      document.getElementById(`admin-tab-${tabId}`).classList.remove('hidden');
-      document.getElementById(`admin-tabbtn-${tabId}`).className = 'admin-tab-btn px-4 py-2.5 font-bold transition-all border-b-2 border-indigo-500 text-white';
-
-      if (tabId === 'settings') populateAdminSettingsForm();
-    };
-
-    const refreshAdminDataState = () => {
-      const totalStudents = appUsers.filter(u => u.role === 'student').length;
-      const activePasses = appUsers.filter(u => u.role === 'student' && u.membership && u.membership.status === 'active').length;
-      const availSeats = Math.max(0, appSettings.totalSeats - appSettings.occupiedSeats);
-      
-      const todayStr = new Date().toISOString().split('T')[0];
-      const bookingsToday = appBookings.filter(b => b.date === todayStr && (b.status === 'approved' || b.status === 'pending')).length;
-      const revenueSum = appPayments.filter(p => p.paymentStatus === 'success').reduce((sum, p) => sum + p.amount, 0);
-
-      document.getElementById('stat-total-students').innerText = totalStudents;
-      document.getElementById('stat-active-memberships').innerText = activePasses;
-      document.getElementById('stat-avail-seats').innerText = availSeats;
-      document.getElementById('stat-bookings-today').innerText = bookingsToday;
-      document.getElementById('stat-revenue').innerText = `₹${revenueSum}`;
-      document.getElementById('stat-registrations').innerText = totalStudents;
-
-      const bTable = document.getElementById('admin-bookings-table-body');
-      bTable.innerHTML = '';
-      if (appBookings.length === 0) {
-        bTable.innerHTML = '<tr><td colspan="7" class="py-6 text-center text-slate-500 font-medium">Queue is empty.</td></tr>';
-      } else {
-        appBookings.forEach(b => {
-          bTable.innerHTML += `
-            <tr class="text-slate-200">
-              <td class="py-3 font-bold">${b.studentName}</td>
-              <td class="py-3 text-indigo-400 font-bold">${b.cabinNumber}</td>
-              <td class="py-3">${b.date}</td>
-              <td class="py-3 font-medium">${b.timeSlot}</td>
-              <td class="py-3 text-slate-400">${b.durationHours} hrs</td>
-              <td class="py-3">
-                <span class="px-2 py-0.5 rounded text-[9px] font-extrabold uppercase
-                  ${b.status === 'approved' ? 'bg-emerald-500/10 text-emerald-400' : ''}
-                  ${b.status === 'pending' ? 'bg-amber-500/10 text-amber-400' : ''}
-                  ${b.status === 'rejected' ? 'bg-rose-500/10 text-rose-400' : ''}
-                  ${b.status === 'cancelled' ? 'bg-slate-800 text-slate-500' : ''}">
-                  ${b.status}
-                </span>
-              </td>
-              <td class="py-3 text-right space-x-2">
-                ${b.status === 'pending' ? `
-                  <button onclick="approveAdminBooking('${b.id}')" class="p-1 bg-emerald-600 text-white rounded font-bold hover:bg-emerald-500">Approve</button>
-                  <button onclick="rejectAdminBooking('${b.id}')" class="p-1 bg-rose-600 text-white rounded font-bold hover:bg-rose-500">Reject</button>
-                ` : ''}
-                ${b.status === 'approved' ? `<button onclick="cancelAdminBooking('${b.id}')" class="text-[10px] text-rose-400 hover:underline">Cancel</button>` : ''}
-              </td>
-            </tr>
-          `;
-        });
-      }
-
-      const sTable = document.getElementById('admin-students-table-body');
-      sTable.innerHTML = '';
-      appUsers.filter(u => u.role === 'student').forEach(stud => {
-        sTable.innerHTML += `
-          <tr class="text-slate-200">
-            <td class="py-3 font-bold">${stud.name}</td>
-            <td class="py-3 text-slate-400 font-mono">${stud.email}</td>
-            <td class="py-3">${stud.phone}</td>
-            <td class="py-3"><span class="px-2 py-0.5 rounded text-[9px] font-bold ${stud.isVerified ? 'bg-emerald-500/10 text-emerald-400' : 'bg-rose-500/10 text-rose-400'}">${stud.isVerified ? 'VERIFIED' : 'UNVERIFIED'}</span></td>
-            <td class="py-3"><span class="px-2 py-0.5 rounded text-[9px] font-bold bg-indigo-500/10 text-indigo-400">${stud.membership?.planName || 'NONE'}</span></td>
-          </tr>
-        `;
-      });
-
-      const cabGrid = document.getElementById('admin-cabins-grid-list');
-      cabGrid.innerHTML = '';
-      appCabins.forEach(cab => {
-        const computedStatus = getComputedCabinStatus(cab.id, cab.cabinNumber, cab.isBlocked);
-        cabGrid.innerHTML += `
-          <div class="glass-card p-4 rounded-2xl border border-white/5 space-y-4 flex flex-col justify-between">
-            <div class="flex justify-between items-start">
-              <div>
-                <h4 class="font-black text-base text-indigo-400">${cab.cabinNumber}</h4>
-                <p class="text-[9px] text-slate-500">Capacity: ${cab.capacity} Desks</p>
-              </div>
-              <span class="px-2 py-0.5 rounded text-[8px] font-extrabold uppercase
-                ${computedStatus === 'available' ? 'bg-emerald-500/15 text-emerald-400' : ''}
-                ${computedStatus === 'reserved' ? 'bg-amber-500/15 text-amber-400' : ''}
-                ${computedStatus === 'occupied' ? 'bg-rose-500/15 text-rose-400' : ''}">
-                ${cab.isBlocked ? 'Blocked' : computedStatus}
-              </span>
-            </div>
-            <button onclick="toggleCabinBlockSim('${cab.id}')" class="w-full py-1.5 rounded-lg text-[9px] font-bold transition-all text-center
-              ${cab.isBlocked ? 'bg-emerald-600/20 text-emerald-400 hover:bg-emerald-600/30' : 'bg-rose-600/20 text-rose-400 hover:bg-rose-600/30'}">
-              ${cab.isBlocked ? 'Activate Cabin' : 'Block Desk'}
-            </button>
-          </div>
-        `;
-      });
-
-      const pTable = document.getElementById('admin-payments-table-body');
-      pTable.innerHTML = '';
-      appPayments.forEach(p => {
-        pTable.innerHTML += `
-          <tr class="text-slate-200">
-            <td class="py-3 font-mono text-slate-400">${p.invoiceNumber}</td>
-            <td class="py-3 font-bold">${p.studentName}</td>
-            <td class="py-3">${p.planName}</td>
-            <td class="py-3 font-extrabold">₹${p.amount}</td>
-            <td class="py-3 text-slate-400">${p.paymentMethod}</td>
-            <td class="py-3">${new Date(p.createdAt).toLocaleDateString()}</td>
-            <td class="py-3 text-right"><span class="px-2 py-0.5 rounded text-[9px] font-extrabold bg-emerald-500/10 text-emerald-400">${p.paymentStatus}</span></td>
-          </tr>
-        `;
-      });
-
-      const revBox = document.getElementById('admin-reviews-list-moderation');
-      revBox.innerHTML = '';
-      if (appReviews.length === 0) {
-        revBox.innerHTML = '<p class="text-slate-500 italic text-xs">No reviews found.</p>';
-      } else {
-        appReviews.forEach(r => {
-          revBox.innerHTML += `
-            <div class="glass-card p-4 rounded-xl border border-white/5 flex items-center justify-between gap-4">
-              <div class="space-y-1">
-                <div class="flex items-center gap-2">
-                  <span class="font-bold text-white">${r.studentName}</span>
-                  <span class="text-slate-500">|</span>
-                  <span class="text-yellow-500">${r.rating} Stars</span>
-                </div>
-                <p class="text-slate-400 italic">"${r.comment}"</p>
-              </div>
-              <div class="flex gap-2">
-                ${!r.isApproved ? `
-                  <button onclick="approveAdminReview('${r.id}')" class="px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white rounded font-bold">Approve</button>
-                ` : `
-                  <button onclick="unapproveAdminReview('${r.id}')" class="px-2 py-1 bg-slate-800 text-slate-400 rounded font-bold">Unapprove</button>
-                `}
-                <button onclick="deleteAdminReview('${r.id}')" class="px-2 py-1 bg-rose-600 text-white rounded font-bold"><i data-lucide="trash" class="w-3.5 h-3.5"></i></button>
-              </div>
-            </div>
-          `;
-        });
-      }
-
-      const msgBox = document.getElementById('admin-inquiries-list');
-      msgBox.innerHTML = '';
-      if (appMessages.length === 0) {
-        msgBox.innerHTML = '<p class="text-slate-500 italic">Inbox is clean.</p>';
-      } else {
-        appMessages.forEach(m => {
-          msgBox.innerHTML += `
-            <div class="glass-card p-4 rounded-xl border border-white/5 space-y-3">
-              <div class="flex justify-between items-start">
-                <div>
-                  <span class="font-bold text-white text-sm">${m.name}</span>
-                  <p class="text-slate-400 text-[10px]">Email: ${m.email} | Phone: ${m.phone}</p>
-                </div>
-                <div class="flex gap-2">
-                  <span class="px-2 py-0.5 rounded text-[8px] font-bold ${m.status === 'unread' ? 'bg-rose-500/10 text-rose-400 animate-pulse' : 'bg-slate-800 text-slate-500'}">${m.status.toUpperCase()}</span>
-                  ${m.status === 'unread' ? `<button onclick="markAdminMessageRead('${m.id}')" class="px-2 py-0.5 bg-indigo-600 text-white rounded font-bold">Mark Read</button>` : ''}
-                </div>
-              </div>
-              <p class="bg-white/5 p-3 rounded-lg leading-normal">${m.message}</p>
-            </div>
-          `;
-        });
-      }
-
-      lucide.createIcons();
-    };
-
-    const approveAdminBooking = (id) => {
-      appBookings = appBookings.map(b => {
-        if (b.id === id) {
-          b.status = 'approved';
-          appNotifications.push({
-            id: `not-${Date.now()}`,
-            userId: b.studentId,
-            message: `Admin has APPROVED your Cabin ${b.cabinNumber} booking slot on ${b.date}.`,
-            isRead: false,
-            createdAt: new Date().toISOString()
-          });
-          saveStateToLocalStorage('lib_notifications', appNotifications);
-        }
-        return b;
-      });
-      saveStateToLocalStorage('lib_bookings', appBookings);
-      showToast('Booking approved.', 'success');
-      refreshAdminDataState();
-    };
-
-    const rejectAdminBooking = (id) => {
-      appBookings = appBookings.map(b => {
-        if (b.id === id) {
-          b.status = 'rejected';
-          appNotifications.push({
-            id: `not-${Date.now()}`,
-            userId: b.studentId,
-            message: `Admin has REJECTED your Cabin ${b.cabinNumber} booking slot on ${b.date}.`,
-            isRead: false,
-            createdAt: new Date().toISOString()
-          });
-          saveStateToLocalStorage('lib_notifications', appNotifications);
-        }
-        return b;
-      });
-      saveStateToLocalStorage('lib_bookings', appBookings);
-      showToast('Booking rejected.', 'success');
-      refreshAdminDataState();
-    };
-
-    const cancelAdminBooking = (id) => {
-      appBookings = appBookings.map(b => {
-        if (b.id === id) {
-          b.status = 'cancelled';
-        }
-        return b;
-      });
-      saveStateToLocalStorage('lib_bookings', appBookings);
-      showToast('Booking cancelled.', 'success');
-      refreshAdminDataState();
-    };
-
-    const toggleCabinBlockSim = (id) => {
-      appCabins = appCabins.map(cab => {
-        if (cab.id === id) {
-          cab.isBlocked = !cab.isBlocked;
-        }
-        return cab;
-      });
-      saveStateToLocalStorage('lib_cabins', appCabins);
-      showToast('Cabin blockage state toggled.', 'success');
-      refreshAdminDataState();
-    };
-
-    const handleAdminCreateCabin = () => {
-      const num = prompt('Enter new Cabin Desk Number (e.g. C11):');
-      if (!num) return;
-      
-      const exists = appCabins.find(c => c.cabinNumber.toLowerCase() === num.toLowerCase());
-      if (exists) {
-        showToast('Cabin number already exists!', 'warning');
-        return;
-      }
-
-      appCabins.push({
-        id: `cabin-${Date.now()}`,
-        cabinNumber: num,
-        capacity: 1,
-        isBlocked: false
-      });
-
-      saveStateToLocalStorage('lib_cabins', appCabins);
-      showToast('Cabin created successfully!', 'success');
-      refreshAdminDataState();
-    };
-
-    const approveAdminReview = (id) => {
-      appReviews = appReviews.map(r => r.id === id ? { ...r, isApproved: true } : r);
-      saveStateToLocalStorage('lib_reviews', appReviews);
-      showToast('Review approved!', 'success');
-      refreshAdminDataState();
-      renderLandingContent();
-    };
-
-    const unapproveAdminReview = (id) => {
-      appReviews = appReviews.map(r => r.id === id ? { ...r, isApproved: false } : r);
-      saveStateToLocalStorage('lib_reviews', appReviews);
-      showToast('Review unapproved!', 'success');
-      refreshAdminDataState();
-      renderLandingContent();
-    };
-
-    const deleteAdminReview = (id) => {
-      appReviews = appReviews.filter(r => r.id !== id);
-      saveStateToLocalStorage('lib_reviews', appReviews);
-      showToast('Review deleted!', 'success');
-      refreshAdminDataState();
-      renderLandingContent();
-    };
-
-    const markAdminMessageRead = (id) => {
-      appMessages = appMessages.map(m => m.id === id ? { ...m, status: 'read' } : m);
-      saveStateToLocalStorage('lib_messages', appMessages);
-      showToast('Message ticket marked as read.', 'success');
-      refreshAdminDataState();
     };
 
     const populateAdminSettingsForm = () => {
@@ -2287,32 +847,6 @@
       document.getElementById('adminset-address').value = appSettings.address;
       document.getElementById('adminset-total-seats').value = appSettings.totalSeats;
       document.getElementById('adminset-occupied-seats').value = appSettings.occupiedSeats;
-
-      const annEditor = document.getElementById('admin-announcements-list-editor');
-      annEditor.innerHTML = '';
-      appSettings.announcements.forEach((ann, i) => {
-        annEditor.innerHTML += `
-          <div class="flex items-center justify-between p-2 bg-white/5 border border-white/5 rounded-xl gap-2">
-            <span class="truncate">${ann}</span>
-            <button type="button" onclick="deleteAdminAnnouncement(${i})" class="text-rose-400 hover:text-rose-300 shrink-0"><i data-lucide="trash" class="w-4 h-4"></i></button>
-          </div>
-        `;
-      });
-
-      const galEditor = document.getElementById('admin-gallery-grid-editor');
-      galEditor.innerHTML = '';
-      appSettings.gallery.forEach((img, i) => {
-        galEditor.innerHTML += `
-          <div class="relative aspect-square border border-white/10 rounded-xl overflow-hidden group">
-            <img src="${img}" alt="Editor Spot" class="w-full h-full object-cover">
-            <button type="button" onclick="deleteAdminGallery(${i})" class="absolute inset-0 bg-slate-950/60 opacity-0 group-hover:opacity-100 flex items-center justify-center text-rose-400 transition-opacity">
-              <i data-lucide="trash" class="w-5 h-5"></i>
-            </button>
-          </div>
-        `;
-      });
-
-      lucide.createIcons();
     };
 
     const handleAdminSettingsSave = (e) => {
@@ -2328,83 +862,14 @@
       appSettings.totalSeats = Number(document.getElementById('adminset-total-seats').value);
       appSettings.occupiedSeats = Number(document.getElementById('adminset-occupied-seats').value);
 
-      saveStateToLocalStorage('lib_settings', appSettings);
-      showToast('Library settings saved successfully!', 'success');
+      localStorage.setItem('lib_settings', JSON.stringify(appSettings));
+      showToast('Configurations saved!', 'success');
       
       renderLandingContent();
-      populateAdminSettingsForm();
+      showView('landing');
     };
 
-    const handleAdminAddAnnouncement = (e) => {
-      e.preventDefault();
-      const val = document.getElementById('new-announcement-input').value;
-      if (!val) return;
-
-      appSettings.announcements.push(val);
-      saveStateToLocalStorage('lib_settings', appSettings);
-      document.getElementById('new-announcement-input').value = '';
-      showToast('Announcement added!', 'success');
-      
-      renderLandingContent();
-      populateAdminSettingsForm();
-    };
-
-    const deleteAdminAnnouncement = (index) => {
-      appSettings.announcements.splice(index, 1);
-      saveStateToLocalStorage('lib_settings', appSettings);
-      showToast('Announcement deleted!', 'success');
-      
-      renderLandingContent();
-      populateAdminSettingsForm();
-    };
-
-    const handleAdminAddGallery = (e) => {
-      e.preventDefault();
-      const val = document.getElementById('new-gallery-input').value;
-      if (!val) return;
-
-      appSettings.gallery.push(val);
-      saveStateToLocalStorage('lib_settings', appSettings);
-      document.getElementById('new-gallery-input').value = '';
-      showToast('Photo added to gallery!', 'success');
-      
-      renderLandingContent();
-      populateAdminSettingsForm();
-    };
-
-    const deleteAdminGallery = (index) => {
-      appSettings.gallery.splice(index, 1);
-      saveStateToLocalStorage('lib_settings', appSettings);
-      showToast('Photo removed from gallery!', 'success');
-      
-      renderLandingContent();
-      populateAdminSettingsForm();
-    };
-
-    const handleInquirySubmit = (e) => {
-      e.preventDefault();
-      const name = document.getElementById('inquiry-name').value;
-      const phone = document.getElementById('inquiry-phone').value;
-      const msg = document.getElementById('inquiry-message').value;
-
-      appMessages.push({
-        id: `msg-${Date.now()}`,
-        name,
-        phone,
-        message: msg,
-        status: 'unread',
-        createdAt: new Date().toISOString()
-      });
-
-      saveStateToLocalStorage('lib_messages', appMessages);
-      showToast('Inquiry ticket sent. We will phone you shortly!', 'success');
-
-      document.getElementById('inquiry-name').value = '';
-      document.getElementById('inquiry-phone').value = '';
-      document.getElementById('inquiry-message').value = '';
-    };
-
-    // --- MODAL UTILITIES ---
+    // Lightbox
     const openLightbox = (imgSrc) => {
       const modal = document.getElementById('lightbox-modal');
       document.getElementById('lightbox-image').src = imgSrc;
@@ -2418,169 +883,7 @@
       modal.classList.remove('flex');
     };
 
-    const openAuthModal = (cardName = 'login') => {
-      document.getElementById('auth-modal').classList.remove('hidden');
-      document.getElementById('auth-modal').classList.add('flex');
-      switchAuthCard(cardName);
-    };
-
-    const closeAuthModal = () => {
-      const modal = document.getElementById('auth-modal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    };
-
-    const switchAuthCard = (cardName) => {
-      document.getElementById('auth-card-login').classList.add('hidden');
-      document.getElementById('auth-card-register').classList.add('hidden');
-      document.getElementById('auth-card-forgot').classList.add('hidden');
-      
-      document.getElementById(`auth-card-${cardName}`).classList.remove('hidden');
-
-      if (cardName === 'forgot') {
-        document.getElementById('forgot-step-request').classList.remove('hidden');
-        document.getElementById('forgot-step-verify').classList.add('hidden');
-      }
-    };
-
-    // --- MOCK AUTH ACTIONS ---
-    const handleAuthSubmit = (e, mode) => {
-      e.preventDefault();
-      if (mode === 'login') {
-        const email = document.getElementById('login-email').value;
-        const pwd = document.getElementById('login-password').value;
-
-        const user = appUsers.find(u => u.email.toLowerCase() === email.toLowerCase() && u.password === pwd);
-        if (user) {
-          loggedUser = user;
-          showToast(`Welcome back, ${user.name}!`, 'success');
-          closeAuthModal();
-          updateHeaderAuthLinks();
-          
-          if (user.role === 'admin') {
-            showView('admin');
-          } else {
-            showView('dashboard');
-            switchDashboardTab('overview');
-          }
-        } else {
-          showToast('Invalid credentials.', 'error');
-        }
-      } else if (mode === 'register') {
-        const name = document.getElementById('reg-name').value;
-        const email = document.getElementById('reg-email').value;
-        const phone = document.getElementById('reg-phone').value;
-        const pwd = document.getElementById('reg-password').value;
-
-        const exists = appUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
-        if (exists) {
-          showToast('Email address already registered.', 'warning');
-          return;
-        }
-
-        const verificationToken = `TOKEN-${Math.floor(1000 + Math.random() * 9000)}`;
-        const newStudent = {
-          id: `user-${Date.now()}`,
-          name,
-          email,
-          phone,
-          password: pwd,
-          role: 'student',
-          isVerified: false,
-          verificationToken
-        };
-
-        appUsers.push(newStudent);
-        saveStateToLocalStorage('lib_users', appUsers);
-
-        alert(`📬 [Verification Simulated Link Alert]\nA verification token has been simulated for your registration!\n\nEmail: ${email}\nVerification Token: ${verificationToken}\n\nCopy this token to complete your email verification in dashboard profile.`);
-
-        loggedUser = newStudent;
-        closeAuthModal();
-        updateHeaderAuthLinks();
-        showToast('Registration successful!', 'success');
-        showView('dashboard');
-        switchDashboardTab('overview');
-      }
-    };
-
-    const handleLogout = () => {
-      loggedUser = null;
-      updateHeaderAuthLinks();
-      showToast('Logged out successfully.', 'success');
-      showView('landing');
-    };
-
-    const handleForgotPasswordRequest = (e) => {
-      e.preventDefault();
-      const email = document.getElementById('forgot-email').value;
-      const user = appUsers.find(u => u.email.toLowerCase() === email.toLowerCase());
-      
-      if (!user) {
-        showToast('No account found.', 'error');
-        return;
-      }
-
-      mockResetEmail = email;
-      mockResetToken = `RESET-${Math.floor(1000 + Math.random() * 9000)}`;
-
-      alert(`📬 [Reset Token Simulated Link Alert]\nA password reset token has been simulated!\n\nEmail: ${email}\nReset Token: ${mockResetToken}\n\nPaste this token in the next step.`);
-
-      document.getElementById('forgot-step-request').classList.add('hidden');
-      document.getElementById('forgot-step-verify').classList.remove('hidden');
-    };
-
-    const handleForgotPasswordVerify = (e) => {
-      e.preventDefault();
-      const token = document.getElementById('forgot-token-val').value;
-      const pwd = document.getElementById('forgot-new-password').value;
-
-      if (token !== mockResetToken) {
-        showToast('Invalid token.', 'error');
-        return;
-      }
-
-      appUsers = appUsers.map(u => {
-        if (u.email.toLowerCase() === mockResetEmail.toLowerCase()) {
-          u.password = pwd;
-        }
-        return u;
-      });
-      saveStateToLocalStorage('lib_users', appUsers);
-      
-      showToast('Password changed successfully! Please Sign In.', 'success');
-      switchAuthCard('login');
-    };
-
-    const updateHeaderAuthLinks = () => {
-      const area = document.getElementById('nav-auth-area');
-      if (loggedUser) {
-        area.innerHTML = `
-          <a href="javascript:void(0)" onclick="showView('${loggedUser.role === 'admin' ? 'admin' : 'dashboard'}')" class="flex items-center gap-1.5 px-3.5 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-xs font-semibold text-white transition-all shadow-md">
-            <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
-            <span>Dashboard</span>
-          </a>
-          <button onclick="handleLogout()" class="p-2 hover:bg-rose-500/15 rounded-lg text-slate-400 hover:text-rose-450 transition-colors" title="Log Out">
-            <i data-lucide="log-out" class="w-5 h-5"></i>
-          </button>
-        `;
-      } else {
-        area.innerHTML = `
-          <button onclick="openAuthModal('login')" class="text-xs font-semibold text-slate-300 hover:text-white px-3 py-2 transition-colors">Log In</button>
-          <button onclick="openAuthModal('register')" class="text-xs font-semibold bg-indigo-600 hover:bg-indigo-500 px-3.5 py-2 rounded-lg text-white transition-all shadow-md shadow-indigo-600/20">Sign Up</button>
-        `;
-      }
-      lucide.createIcons();
-    };
-
-    const handleHeroCTA = () => {
-      if (loggedUser) {
-        showView(loggedUser.role === 'admin' ? 'admin' : 'dashboard');
-      } else {
-        openAuthModal('login');
-      }
-    };
-
+    // Accordions
     const toggleFaqAccordion = (index) => {
       const answer = document.getElementById(`faq-answer-${index}`);
       const icon = document.getElementById(`faq-chevron-${index}`);
@@ -2588,16 +891,9 @@
       icon.style.transform = open ? 'rotate(0deg)' : 'rotate(180deg)';
     };
 
-    const triggerWhatsAppBooking = () => {
-      const text = `Hello,\nI would like to book a study cabin.\n\nName:\nDate:\nTime:\nDuration:\n\nPlease confirm availability.`;
-      const url = `https://wa.me/91${appSettings.whatsAppNumber}?text=${encodeURIComponent(text)}`;
-      window.open(url, '_blank');
-    };
-
     // Startup bootstrap
     initThemeMode();
     renderLandingContent();
-    updateHeaderAuthLinks();
 
   </script>
 </body>
