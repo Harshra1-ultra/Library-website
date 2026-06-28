@@ -920,9 +920,8 @@
         });
       }
 
-      // Update Google Maps iframe source dynamically to show a red marker pin on search query
-      const encodedAddress = encodeURIComponent(appSettings.address);
-      document.getElementById('landing-map-iframe').src = `https://maps.google.com/maps?q=${encodedAddress}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
+      // Update Google Maps iframe source to show the exact Street View location of the library
+      document.getElementById('landing-map-iframe').src = `https://www.google.com/maps?layer=c&cbll=24.7806902,85.0251262&cbp=11,199.03,,0,-3.12&output=embed`;
 
       lucide.createIcons();
     };
