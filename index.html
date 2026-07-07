@@ -136,8 +136,8 @@
         <!-- Right Header Items -->
         <div class="flex items-center gap-4">
           <!-- Live Seats Counter button -->
-          <div class="flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-bold select-none">
-            <span class="w-1.5 h-1.5 bg-emerald-500 dark:bg-emerald-400 rounded-full animate-pulse"></span>
+          <div id="header-seats-badge" class="flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-bold select-none">
+            <span id="header-seats-dot" class="w-1.5 h-1.5 bg-emerald-500 dark:bg-emerald-400 rounded-full animate-pulse"></span>
             <span id="header-available-seats">Seats: 18 Available</span>
           </div>
 
@@ -848,9 +848,31 @@
       document.getElementById('footer-phone-val').innerText = `+91 ${appSettings.contactNumber}`;
       document.getElementById('footer-timings-val').innerText = appSettings.timings;
 
-      // Update seats count indicator
+      // Update seats count indicator with dynamic urgency coloring
       const avail = Math.max(0, appSettings.totalSeats - appSettings.occupiedSeats);
-      document.getElementById('header-available-seats').innerText = `Seats: ${avail} Available`;
+      const seatsBadge = document.getElementById('header-seats-badge');
+      const seatsDot = document.getElementById('header-seats-dot');
+      const seatsText = document.getElementById('header-available-seats');
+      
+      if (avail <= 20) {
+        // High Urgency - Few seats left (styled in Amber)
+        seatsText.innerText = "Only Few Seats Left!";
+        if (seatsBadge) {
+          seatsBadge.className = "flex items-center gap-1.5 px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-600 dark:text-amber-400 rounded-full text-xs font-bold select-none";
+        }
+        if (seatsDot) {
+          seatsDot.className = "w-1.5 h-1.5 bg-amber-500 dark:bg-amber-400 rounded-full animate-pulse";
+        }
+      } else {
+        // Normal availability (styled in Emerald Green)
+        seatsText.innerText = `Seats: ${avail} Available`;
+        if (seatsBadge) {
+          seatsBadge.className = "flex items-center gap-1.5 px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 rounded-full text-xs font-bold select-none";
+        }
+        if (seatsDot) {
+          seatsDot.className = "w-1.5 h-1.5 bg-emerald-500 dark:bg-emerald-400 rounded-full animate-pulse";
+        }
+      }
 
       if (appSettings.announcements.length > 0) {
         document.getElementById('announcement-text').innerText = appSettings.announcements[0];
