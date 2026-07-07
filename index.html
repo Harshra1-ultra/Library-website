@@ -6,6 +6,11 @@
   <title>The Study Point Library | Premium Reading Hall & WhatsApp Booking</title>
   <meta name="description" content="Distraction-free air-conditioned study hall with private cabins, RO water, fiber Wi-Fi, power backup at Khatangi Kothi, Gaya Highway. View seat availability and book slots via WhatsApp.">
   <meta name="keywords" content="library, study point, cabin booking, Gaya library, study hall, reading room">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://harshra1-ultra.github.io/Library-website/">
+  
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-PLACEHOLDER" crossorigin="anonymous"></script>
   
   <!-- CSS & Tailwind CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -196,6 +201,25 @@
         </div>
       </section>
 
+      <!-- Google AdSense Slot 1 (Responsive Banner) -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200/60 dark:border-white/5 rounded-3xl p-4 flex flex-col items-center justify-center min-h-[110px] text-center space-y-1 shadow-sm">
+          <span class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Sponsored Advertisement</span>
+          <div class="w-full flex items-center justify-center py-2 overflow-hidden">
+            <ins class="adsbygoogle"
+                 style="display:block; min-width:320px; max-width:970px; width:100%; height:90px;"
+                 data-ad-client="ca-pub-PLACEHOLDER"
+                 data-ad-slot="PLACEHOLDER_SLOT_1"
+                 data-ad-format="horizontal"
+                 full-width-responsive="true"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+            </script>
+          </div>
+          <div class="text-[9px] text-slate-400 dark:text-slate-500 font-medium opacity-60">AdSense Block (Replace with your actual Ad Client & Slot IDs)</div>
+        </div>
+      </section>
+
       <!-- Library Introduction -->
       <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
@@ -352,6 +376,25 @@
               <!-- Dynamically populated review cards -->
             </div>
           </div>
+        </div>
+      </section>
+
+      <!-- Google AdSense Slot 2 (Responsive Banner) -->
+      <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-slate-50 dark:bg-slate-900/40 border border-slate-200/60 dark:border-white/5 rounded-3xl p-4 flex flex-col items-center justify-center min-h-[110px] text-center space-y-1 shadow-sm">
+          <span class="text-[9px] font-bold text-slate-400 dark:text-slate-500 uppercase tracking-widest">Sponsored Advertisement</span>
+          <div class="w-full flex items-center justify-center py-2 overflow-hidden">
+            <ins class="adsbygoogle"
+                 style="display:block; min-width:320px; max-width:970px; width:100%; height:90px;"
+                 data-ad-client="ca-pub-PLACEHOLDER"
+                 data-ad-slot="PLACEHOLDER_SLOT_2"
+                 data-ad-format="horizontal"
+                 full-width-responsive="true"></ins>
+            <script>
+                 try { (adsbygoogle = window.adsbygoogle || []).push({}); } catch(e) {}
+            </script>
+          </div>
+          <div class="text-[9px] text-slate-400 dark:text-slate-500 font-medium opacity-60">AdSense Block (Replace with your actual Ad Client & Slot IDs)</div>
         </div>
       </section>
 
@@ -657,11 +700,9 @@
           // If the old local storage doesn't have plans or announcements (e.g. from V1)
           if (!parsed.plans || !parsed.announcements || !parsed.gallery) {
             localStorage.removeItem('lib_settings');
-            localStorage.removeItem('lib_reviews');
           }
         } catch (e) {
           localStorage.removeItem('lib_settings');
-          localStorage.removeItem('lib_reviews');
         }
       }
 
@@ -697,22 +738,23 @@
         localStorage.setItem('lib_settings', JSON.stringify(defaultSettings));
       }
 
-      // Clear out legacy default reviews containing the specific names/texts to ensure they don't persist
+      // Bulletproof reviews sanitization and initialization
+      let reviews = [];
       const existingReviewsStr = localStorage.getItem('lib_reviews');
       if (existingReviewsStr) {
         try {
-          const parsedReviews = JSON.parse(existingReviewsStr);
-          const legacyNames = ['Aman Sharma', 'Priya Singh', 'Ravi Kumar'];
-          const filteredReviews = parsedReviews.filter(rev => !legacyNames.includes(rev.studentName));
-          if (filteredReviews.length !== parsedReviews.length) {
-            localStorage.setItem('lib_reviews', JSON.stringify(filteredReviews));
+          const parsed = JSON.parse(existingReviewsStr);
+          if (Array.isArray(parsed)) {
+            const legacyNames = ['Aman Sharma', 'Priya Singh', 'Ravi Kumar'];
+            reviews = parsed.filter(rev => {
+              return rev && typeof rev === 'object' && rev.studentName && !legacyNames.includes(rev.studentName);
+            });
           }
         } catch (e) {
-          localStorage.setItem('lib_reviews', JSON.stringify([]));
+          reviews = [];
         }
-      } else {
-        localStorage.setItem('lib_reviews', JSON.stringify([]));
       }
+      localStorage.setItem('lib_reviews', JSON.stringify(reviews));
     };
 
     // Run Initializer
@@ -784,6 +826,10 @@
 
     // --- RENDERING PAGE DATA ---
     const renderLandingContent = () => {
+      // Reload fresh state from localStorage to prevent stale variable mismatches
+      appSettings = JSON.parse(localStorage.getItem('lib_settings')) || {};
+      appReviews = JSON.parse(localStorage.getItem('lib_reviews')) || [];
+
       document.getElementById('header-library-name').innerText = appSettings.libraryName;
       document.getElementById('header-library-tagline').innerText = appSettings.tagline;
       document.getElementById('hero-library-name').innerText = appSettings.libraryName;
